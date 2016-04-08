@@ -2,8 +2,6 @@ package narou4j;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import narou4j.networks.NarouApiClient;
-import okhttp3.Call;
 import okhttp3.Response;
 
 import java.io.IOException;
