@@ -3,19 +3,18 @@ package narou4j.networks;
 import okhttp3.*;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
-public abstract class NarouApiClient {
+public class NarouApiClient {
+
     private OkHttpClient client = new OkHttpClient();
-    private Map<String, String> params = new HashMap<String, String>();
-    private HttpUrl.Builder builder = NarouUrlBuilder.buildApiUrl();
 
-    public NarouApiClient() {
-        builder.addQueryParameter("out", "json");
-    }
+    public Response getNovels(Map<String, String> params) {
+        HttpUrl.Builder builder = NarouUrlBuilder.buildApiUrl();
+        for (String key : params.keySet()) {
+            builder.addQueryParameter(key, params.get(key));
+        }
 
-    public Response getAllNovel() {
         return enqueue(builder);
     }
 
@@ -29,10 +28,7 @@ public abstract class NarouApiClient {
             return call.execute();
         } catch (IOException e) {
             e.printStackTrace();
-            onFailure(call, e);
             return null;
         }
     }
-
-    public abstract void onFailure(Call call, IOException e);
 }
