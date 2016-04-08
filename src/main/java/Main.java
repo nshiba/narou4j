@@ -9,6 +9,5 @@ public class Main {
         Narou narou = new Narou();
         List<Novel> novels = narou.getNovels();
         System.out.println(novels.get(1).toString());
-
     }
 }

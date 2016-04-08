@@ -6,18 +6,16 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NarouApiClient {
+public abstract class NarouApiClient {
     private OkHttpClient client = new OkHttpClient();
     private Map<String, String> params = new HashMap<String, String>();
-    private CallBack callBack;
+    private HttpUrl.Builder builder = NarouUrlBuilder.buildApiUrl();
 
-    public NarouApiClient(CallBack callBack) {
-        this.callBack = callBack;
+    public NarouApiClient() {
+        builder.addQueryParameter("out", "json");
     }
 
     public Response getAllNovel() {
-        HttpUrl.Builder builder = NarouUrlBuilder.buildApiUrl();
-        builder.addQueryParameter("out", "json");
         return enqueue(builder);
     }
 
@@ -31,8 +29,10 @@ public class NarouApiClient {
             return call.execute();
         } catch (IOException e) {
             e.printStackTrace();
-            callBack.onFailure(call, e);
+            onFailure(call, e);
             return null;
         }
     }
+
+    public abstract void onFailure(Call call, IOException e);
 }

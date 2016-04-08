@@ -262,31 +262,31 @@ public class Novel implements Serializable{
     public String toString() {
         return "Novel{" + "\n" +
                 "allcount=" + allcount + "\n" +
-                ", title='" + title + '\'' + "\n" +
-                ", ncode='" + ncode + '\'' + "\n" +
-                ", userId='" + userId + '\'' + "\n" +
-                ", writer='" + writer + '\'' + "\n" +
-                ", story='" + story + '\'' + "\n" +
-                ", genre=" + genre + "\n" +
-                ", gensaku=" + gensaku + "\n" +
-                ", keyword='" + keyword + '\'' + "\n" +
-                ", firstUploadDate='" + firstUploadDate + '\'' + "\n" +
-                ", lastUploadDate='" + lastUploadDate + '\'' + "\n" +
-                ", novelType=" + novelType + "\n" +
-                ", isNovelContinue=" + isNovelContinue + "\n" +
-                ", allNumberOfNovel=" + allNumberOfNovel + "\n" +
-                ", numberOfChar=" + numberOfChar + "\n" +
-                ", time=" + time + "\n" +
-                ", uploadType=" + uploadType + "\n" +
-                ", globalPoint=" + globalPoint + "\n" +
-                ", favCount=" + favCount + "\n" +
-                ", reviewCount=" + reviewCount + "\n" +
-                ", allPoint=" + allPoint + "\n" +
-                ", allHyokaCount=" + allHyokaCount + "\n" +
-                ", sasieCount=" + sasieCount + "\n" +
-                ", kaiwaritu=" + kaiwaritu + "\n" +
-                ", nobelUpdatedAt='" + nobelUpdatedAt + '\'' + "\n" +
-                ", updatedAt='" + updatedAt + '\'' + "\n" +
+                "title='" + title + '\'' + "\n" +
+                "ncode='" + ncode + '\'' + "\n" +
+                "userId='" + userId + '\'' + "\n" +
+                "writer='" + writer + '\'' + "\n" +
+                "story='" + story + '\'' + "\n" +
+                "genre=" + genre + "\n" +
+                "gensaku=" + gensaku + "\n" +
+                "keyword='" + keyword + '\'' + "\n" +
+                "firstUploadDate='" + firstUploadDate + '\'' + "\n" +
+                "lastUploadDate='" + lastUploadDate + '\'' + "\n" +
+                "novelType=" + novelType + "\n" +
+                "isNovelContinue=" + isNovelContinue + "\n" +
+                "allNumberOfNovel=" + allNumberOfNovel + "\n" +
+                "numberOfChar=" + numberOfChar + "\n" +
+                "time=" + time + "\n" +
+                "uploadType=" + uploadType + "\n" +
+                "globalPoint=" + globalPoint + "\n" +
+                "favCount=" + favCount + "\n" +
+                "reviewCount=" + reviewCount + "\n" +
+                "allPoint=" + allPoint + "\n" +
+                "allHyokaCount=" + allHyokaCount + "\n" +
+                "sasieCount=" + sasieCount + "\n" +
+                "kaiwaritu=" + kaiwaritu + "\n" +
+                "nobelUpdatedAt='" + nobelUpdatedAt + '\'' + "\n" +
+                "updatedAt='" + updatedAt + '\'' + "\n" +
                 '}';
     }
 }
