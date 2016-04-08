@@ -16,7 +16,7 @@ public class Narou extends GetParameter {
 
     public List<Novel> getNovels() {
         client = new NarouApiClient();
-
+        params.put("of", getOfParam());
         return Utils.response2Json(client.getNovels(params));
     }
 }
