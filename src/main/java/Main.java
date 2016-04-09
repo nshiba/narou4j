@@ -3,7 +3,6 @@ import narou4j.Novel;
 import narou4j.enums.Genre;
 import narou4j.enums.OutputOrder;
 import narou4j.enums.SearchWordTarget;
-import narou4j.enums.WarnigTag;
 
 import java.util.List;
 
@@ -28,8 +27,17 @@ public class Main {
 
         narou.setLim(5);
 
-        narou.setWarnigTag(WarnigTag.BL);
-        narou.setWarnigTag(WarnigTag.ZANKOKU);
+//        narou.setWarnigTag(WarnigTag.BL);
+//        narou.setWarnigTag(WarnigTag.ZANKOKU);
+
+        narou.setReadTime(100);
+        narou.setReadTime(200, 300);
+        narou.setReadTime(0, 100);
+        narou.setReadTime(400, 0);
+//        narou.setCharacterLength(10000);
+//        narou.setCharacterLength(20000, 30000);
+//        narou.setCharacterLength(0, 10000);
+//        narou.setCharacterLength(40000, 0);
 
 //        narou.setUserId(288399);
 //        narou.setUserId(345745);

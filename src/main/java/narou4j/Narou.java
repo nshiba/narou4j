@@ -1,9 +1,7 @@
 package narou4j;
 
-import narou4j.networks.NarouApiClient;
-import okhttp3.Call;
+import narou4j.network.NarouApiClient;
 
-import java.io.IOException;
 import java.util.List;
 
 public class Narou extends GetParameter {

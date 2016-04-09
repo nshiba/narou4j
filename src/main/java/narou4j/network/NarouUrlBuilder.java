@@ -1,4 +1,4 @@
-package narou4j.networks;
+package narou4j.network;
 
 import okhttp3.HttpUrl;
 
