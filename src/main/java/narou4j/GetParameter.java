@@ -1,9 +1,6 @@
 package narou4j;
 
-import narou4j.enums.Genre;
-import narou4j.enums.OfParam;
-import narou4j.enums.OutputOrder;
-import narou4j.enums.SearchWordTarget;
+import narou4j.enums.*;
 
 import java.util.*;
 
@@ -149,5 +146,9 @@ public class GetParameter {
         }
         System.out.println(builder.toString());
         return builder.toString();
+    }
+
+    public void setWarnigTag(WarnigTag tag) {
+        params.put(tag.getId(), String.valueOf(1));
     }
 }

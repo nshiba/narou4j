@@ -3,6 +3,7 @@ import narou4j.Novel;
 import narou4j.enums.Genre;
 import narou4j.enums.OutputOrder;
 import narou4j.enums.SearchWordTarget;
+import narou4j.enums.WarnigTag;
 
 import java.util.List;
 
@@ -21,11 +22,14 @@ public class Main {
 //        narou.setGenre(Genre.POEM);
 //        narou.setGenre(Genre.LITERATURE);
 
-        narou.setNotGenre(Genre.FANTASY);
+//        narou.setNotGenre(Genre.FANTASY);
 
         narou.setOrder(OutputOrder.TOTAL_POINT);
 
         narou.setLim(5);
+
+        narou.setWarnigTag(WarnigTag.BL);
+        narou.setWarnigTag(WarnigTag.ZANKOKU);
 
 //        narou.setUserId(288399);
 //        narou.setUserId(345745);
