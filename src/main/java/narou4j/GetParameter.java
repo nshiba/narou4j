@@ -1,14 +1,17 @@
 package narou4j;
 
+import narou4j.enums.Genre;
 import narou4j.enums.OfParam;
 import narou4j.enums.OutputOrder;
-import narou4j.enums.SearchTarget;
+import narou4j.enums.SearchWordTarget;
 
 import java.util.*;
 
 public class GetParameter {
     protected Map<String, String> params = new HashMap<>();
     private Set<OfParam> ofParamSet = new HashSet<>();
+    private Set<Genre> genreSet = new TreeSet<>();
+    private Set<Genre> notGenreSet = new TreeSet<>();
 
     public void setGzip(int rate) {
         if (rate < 1 || rate > 5) {
@@ -66,7 +69,7 @@ public class GetParameter {
         params.put("notword", word);
     }
 
-    public void setSearchTarget(SearchTarget target) {
+    public void setSearchTarget(SearchWordTarget target) {
         switch (target) {
             case TITLE: {
                 params.put("title", String.valueOf(1));
@@ -85,5 +88,45 @@ public class GetParameter {
                 break;
             }
         }
+    }
+
+    public void setGenre(Genre genre) {
+        genreSet.add(genre);
+    }
+
+    public String getGenre() {
+        StringBuilder builder = new StringBuilder();
+
+        int i = 1;
+        for (Genre genre : genreSet) {
+            builder.append(genre.getId());
+            if (i != genreSet.size()) {
+                builder.append("-");
+            }
+
+            i++;
+        }
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
+    public void setNotGenre(Genre genre) {
+        notGenreSet.add(genre);
+    }
+
+    public String getNotGenre() {
+        StringBuilder builder = new StringBuilder();
+
+        int i = 1;
+        for (Genre genre : notGenreSet) {
+            builder.append(genre.getId());
+            if (i != notGenreSet.size()) {
+                builder.append("-");
+            }
+
+            i++;
+        }
+        System.out.println(builder.toString());
+        return builder.toString();
     }
 }

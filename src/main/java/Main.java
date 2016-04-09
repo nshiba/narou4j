@@ -1,8 +1,8 @@
 import narou4j.Narou;
 import narou4j.Novel;
-import narou4j.enums.OfParam;
+import narou4j.enums.Genre;
 import narou4j.enums.OutputOrder;
-import narou4j.enums.SearchTarget;
+import narou4j.enums.SearchWordTarget;
 
 import java.util.List;
 
@@ -10,14 +10,22 @@ public class Main {
 
     public static void main(String[] args) {
         Narou narou = new Narou();
+
         narou.setNotWord("ファンタジー");
-        narou.setSearchTarget(SearchTarget.KEYWORD);
+        narou.setSearchTarget(SearchWordTarget.KEYWORD);
 
 //        narou.setOfParams(OfParam.TITLE);
 //        narou.setOfParams(OfParam.GENRE);
 //        narou.setOfParams(OfParam.STORY);
 
+//        narou.setGenre(Genre.POEM);
+//        narou.setGenre(Genre.LITERATURE);
+
+        narou.setNotGenre(Genre.FANTASY);
+
         narou.setOrder(OutputOrder.TOTAL_POINT);
+
+        narou.setLim(5);
 
 //        narou.setGzip(5);
 
