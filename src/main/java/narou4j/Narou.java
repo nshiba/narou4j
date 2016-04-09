@@ -19,6 +19,7 @@ public class Narou extends GetParameter {
         params.put("of", getOfParam());
         params.put("genre", getGenre());
         params.put("notgenre", getNotGenre());
+        params.put("userid", getUserIds());
         return Utils.response2Json(client.getNovels(params));
     }
 }

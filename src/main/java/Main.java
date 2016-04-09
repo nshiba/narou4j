@@ -27,6 +27,9 @@ public class Main {
 
         narou.setLim(5);
 
+//        narou.setUserId(288399);
+//        narou.setUserId(345745);
+
 //        narou.setGzip(5);
 
         List<Novel> novels = narou.getNovels();

@@ -8,10 +8,11 @@ import narou4j.enums.SearchWordTarget;
 import java.util.*;
 
 public class GetParameter {
-    protected Map<String, String> params = new HashMap<>();
+    Map<String, String> params = new HashMap<>();
     private Set<OfParam> ofParamSet = new HashSet<>();
     private Set<Genre> genreSet = new TreeSet<>();
     private Set<Genre> notGenreSet = new TreeSet<>();
+    private Set<Integer> userIdSet = new TreeSet<>();
 
     public void setGzip(int rate) {
         if (rate < 1 || rate > 5) {
@@ -25,7 +26,7 @@ public class GetParameter {
         ofParamSet.add(param);
     }
 
-    public String getOfParam() {
+    String getOfParam() {
         StringBuilder builder = new StringBuilder();
 
         int i = 1;
@@ -94,7 +95,7 @@ public class GetParameter {
         genreSet.add(genre);
     }
 
-    public String getGenre() {
+    String getGenre() {
         StringBuilder builder = new StringBuilder();
 
         int i = 1;
@@ -114,13 +115,33 @@ public class GetParameter {
         notGenreSet.add(genre);
     }
 
-    public String getNotGenre() {
+    String getNotGenre() {
         StringBuilder builder = new StringBuilder();
 
         int i = 1;
         for (Genre genre : notGenreSet) {
             builder.append(genre.getId());
             if (i != notGenreSet.size()) {
+                builder.append("-");
+            }
+
+            i++;
+        }
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
+    public void setUserId(int id) {
+        userIdSet.add(id);
+    }
+
+    String getUserIds() {
+        StringBuilder builder = new StringBuilder();
+
+        int i = 1;
+        for (int userId : userIdSet) {
+            builder.append(userId);
+            if (i != userIdSet.size()) {
                 builder.append("-");
             }
 
