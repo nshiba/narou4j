@@ -1,6 +1,6 @@
 package narou4j.enums;
 
-public enum  SearchTarget {
+public enum SearchWordTarget {
     TITLE(0),
     SYNOPSIS(1),
     KEYWORD(2),
@@ -8,7 +8,7 @@ public enum  SearchTarget {
 
     private final int id;
 
-    private SearchTarget(int id) {
+    private SearchWordTarget(int id) {
         this.id = id;
     }
 
