@@ -179,6 +179,24 @@ public class GetParameter {
         params.put("time", time2String(min, max));
     }
 
+    public void setConversationRate(int length) {
+        if (params.containsKey("kaiwaritu")) {
+            System.out.println("remove kaiwaritu");
+            params.remove("kaiwaritu");
+        }
+        params.put("kaiwaritu", String.valueOf(length));
+    }
+
+    public void setConversationRate(int min, int max) {
+        if (params.containsKey("kaiwaritu")) {
+            System.out.println("remove kaiwaritu");
+            params.remove("kaiwaritu");
+        }
+
+        System.out.println(time2String(min, max));
+        params.put("kaiwaritu", time2String(min, max));
+    }
+
 
 
     private String genre2String(Set<Genre> set) {
