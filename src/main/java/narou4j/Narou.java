@@ -22,4 +22,11 @@ public class Narou extends GetParameter {
         params.put("ncode", getNcodes());
         return Utils.response2Json(client.getNovels(params), isGzip);
     }
+
+    public Novel getNovel(String ncode) {
+        client = new NarouApiClient();
+        params.put("ncode", ncode);
+        List<Novel> novels = Utils.response2Json(client.getNovels(params), isGzip);
+        return novels.get(novels.size() -1);
+    }
 }

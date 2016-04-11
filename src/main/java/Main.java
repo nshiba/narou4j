@@ -56,10 +56,12 @@ public class Main {
 
 //        narou.setGzip(5);
 
-        List<Novel> novels = narou.getNovels();
-        for (Novel novel : novels) {
-            System.out.println(novel.toString());
-        }
-        System.out.println(novels.size());
+//        List<Novel> novels = narou.getNovels();
+//        for (Novel novel : novels) {
+//            System.out.println(novel.toString());
+//        }
+//        System.out.println(novels.size());
+
+        System.out.println(narou.getNovel("N9669BK"));
     }
 }
