@@ -135,20 +135,12 @@ public class GetParameter {
         if (params.containsKey("time")) {
             throw new NarouDuplicateException("character length is not used in conjunction with the reading time. ");
         }
-        if (params.containsKey("length")) {
-            System.out.println("remove length");
-            params.remove("length");
-        }
         params.put("length", String.valueOf(length));
     }
 
     public void setCharacterLength(int min, int max) {
         if (params.containsKey("time")) {
             throw new NarouDuplicateException("character length is not used in conjunction with the reading time. ");
-        }
-        if (params.containsKey("length")) {
-            System.out.println("remove length");
-            params.remove("length");
         }
 
         System.out.println(range2String(String.valueOf(min), String.valueOf(max)));
@@ -159,10 +151,6 @@ public class GetParameter {
         if (params.containsKey("length")) {
             throw new NarouDuplicateException("reading time is not used in conjunction with the character length. ");
         }
-        if (params.containsKey("time")) {
-            System.out.println("remove time");
-            params.remove("time");
-        }
         params.put("time", String.valueOf(length));
     }
 
@@ -170,47 +158,25 @@ public class GetParameter {
         if (params.containsKey("length")) {
             throw new NarouDuplicateException("reading time is not used in conjunction with the character length. ");
         }
-        if (params.containsKey("time")) {
-            System.out.println("remove time");
-            params.remove("time");
-        }
 
         System.out.println(range2String(String.valueOf(min), String.valueOf(max)));
         params.put("time", range2String(String.valueOf(min), String.valueOf(max)));
     }
 
     public void setConversationRate(int rate) {
-        if (params.containsKey("kaiwaritu")) {
-            System.out.println("remove kaiwaritu");
-            params.remove("kaiwaritu");
-        }
         params.put("kaiwaritu", String.valueOf(rate));
     }
 
     public void setConversationRate(int min, int max) {
-        if (params.containsKey("kaiwaritu")) {
-            System.out.println("remove kaiwaritu");
-            params.remove("kaiwaritu");
-        }
-
         System.out.println(range2String(String.valueOf(min), String.valueOf(max)));
         params.put("kaiwaritu", range2String(String.valueOf(min), String.valueOf(max)));
     }
 
     public void setArtworks(int num) {
-        if (params.containsKey("sasie")) {
-            System.out.println("remove sasie");
-            params.remove("sasie");
-        }
         params.put("sasie", String.valueOf(num));
     }
 
     public void setArtworks(int min, int max) {
-        if (params.containsKey("sasie")) {
-            System.out.println("remove sasie");
-            params.remove("sasie");
-        }
-
         System.out.println(range2String(String.valueOf(min), String.valueOf(max)));
         params.put("sasie", range2String(String.valueOf(min), String.valueOf(max)));
     }
