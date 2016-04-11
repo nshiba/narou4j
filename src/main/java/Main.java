@@ -1,9 +1,9 @@
 import narou4j.Narou;
 import narou4j.Novel;
-import narou4j.enums.Genre;
+import narou4j.enums.NovelType;
 import narou4j.enums.OutputOrder;
-import narou4j.enums.SearchWordTarget;
 
+import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -11,21 +11,21 @@ public class Main {
     public static void main(String[] args) {
         Narou narou = new Narou();
 
-        narou.setNotWord("ファンタジー");
-        narou.setSearchTarget(SearchWordTarget.KEYWORD);
+//        narou.setNotWord("ファンタジー");
+//        narou.setSearchTarget(SearchWordTarget.KEYWORD);
 
 //        narou.setOfParams(OfParam.TITLE);
 //        narou.setOfParams(OfParam.GENRE);
 //        narou.setOfParams(OfParam.STORY);
 
-//        narou.setGenre(Genre.POEM);
-//        narou.setGenre(Genre.LITERATURE);
+//        narou.setGenre(NovelGenre.POEM);
+//        narou.setGenre(NovelGenre.LITERATURE);
 
-//        narou.setNotGenre(Genre.FANTASY);
+//        narou.setNotGenre(NovelGenre.FANTASY);
 
         narou.setOrder(OutputOrder.TOTAL_POINT);
 
-        narou.setLim(5);
+//        narou.setLim(5);
 
 //        narou.setWarnigTag(WarnigTag.BL);
 //        narou.setWarnigTag(WarnigTag.ZANKOKU);
@@ -39,10 +39,19 @@ public class Main {
 //        narou.setCharacterLength(0, 10000);
 //        narou.setCharacterLength(40000, 0);
 
-        narou.setConversationRate(30, 50);
+//        narou.setArtworks(30, 50);
+//        narou.setArtworks(20);
+
+//        narou.setNCode("n1710de");
+//        narou.setNCode("n9669bk");
+
+        narou.setNovelType(NovelType.SERIES_END);
+
+//        narou.setPickup(true);
 
 //        narou.setUserId(288399);
 //        narou.setUserId(345745);
+
 
 //        narou.setGzip(5);
 

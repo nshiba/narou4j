@@ -1,6 +1,6 @@
 package narou4j.enums;
 
-public enum Genre {
+public enum NovelGenre {
     LITERATURE(1),
     LOVE(2),
     HISTORY(3),
@@ -20,7 +20,7 @@ public enum Genre {
 
     private int id;
 
-    private Genre(int id) {
+    private NovelGenre(int id) {
         this.id = id;
     }
 
