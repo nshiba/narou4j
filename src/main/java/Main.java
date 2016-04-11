@@ -3,7 +3,6 @@ import narou4j.Novel;
 import narou4j.enums.NovelType;
 import narou4j.enums.OutputOrder;
 
-import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -46,6 +45,8 @@ public class Main {
 //        narou.setNCode("n9669bk");
 
         narou.setNovelType(NovelType.SERIES_END);
+
+        narou.notGzip();
 
 //        narou.setPickup(true);
 

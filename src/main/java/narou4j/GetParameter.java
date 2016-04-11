@@ -25,13 +25,19 @@ public class GetParameter {
         isGzip = true;
     }
 
-    public void removeGzip() {
+    public void notGzip() {
         params.remove("gzip");
         isGzip = false;
     }
 
     public void setOfParams(OfParam param) {
         ofParamSet.add(param);
+    }
+
+    public void setOfParams(OfParam[] params) {
+        for (OfParam param : params) {
+            ofParamSet.add(param);
+        }
     }
 
     String getOfParam() {
@@ -103,12 +109,24 @@ public class GetParameter {
         novelGenreSet.add(novelGenre);
     }
 
+    public void setGenre(NovelGenre[] genres) {
+        for (NovelGenre genre : genres) {
+            novelGenreSet.add(genre);
+        }
+    }
+
     String getGenre() {
         return genre2String(novelGenreSet);
     }
 
-    public void setNotGenre(NovelGenre novelGenre) {
-        notNovelGenreSet.add(novelGenre);
+    public void setNotGenre(NovelGenre genre) {
+        notNovelGenreSet.add(genre);
+    }
+
+    public void setNotGenre(NovelGenre[] genres) {
+        for (NovelGenre genre : genres) {
+            notNovelGenreSet.add(genre);
+        }
     }
 
     String getNotGenre() {
@@ -117,6 +135,12 @@ public class GetParameter {
 
     public void setUserId(int id) {
         userIdSet.add(id);
+    }
+
+    public void setUserId(int[] ids) {
+        for (int id : ids) {
+            userIdSet.add(id);
+        }
     }
 
     String getUserIds() {
@@ -191,6 +215,12 @@ public class GetParameter {
 
     public void setNCode(String ncode) {
         ncodeSet.add(ncode);
+    }
+
+    public void setNCode(String[] ncodes) {
+        for (String ncode : ncodes) {
+            ncodeSet.add(ncode);
+        }
     }
 
     String getNcodes() {
