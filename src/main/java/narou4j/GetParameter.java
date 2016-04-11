@@ -8,6 +8,8 @@ import java.util.*;
 
 public class GetParameter {
     Map<String, String> params = new HashMap<>();
+    boolean isGzip = true;
+
     private Set<OfParam> ofParamSet = new HashSet<>();
     private Set<NovelGenre> novelGenreSet = new TreeSet<>();
     private Set<NovelGenre> notNovelGenreSet = new TreeSet<>();
@@ -20,6 +22,12 @@ public class GetParameter {
         }
 
         params.put("gzip", String.valueOf(rate));
+        isGzip = true;
+    }
+
+    public void removeGzip() {
+        params.remove("gzip");
+        isGzip = false;
     }
 
     public void setOfParams(OfParam param) {

@@ -10,6 +10,7 @@ public class Narou extends GetParameter {
 
     public Narou() {
         params.put("out", "json");
+        setGzip(5);
     }
 
     public List<Novel> getNovels() {
@@ -19,6 +20,6 @@ public class Narou extends GetParameter {
         params.put("notgenre", getNotGenre());
         params.put("userid", getUserIds());
         params.put("ncode", getNcodes());
-        return Utils.response2Json(client.getNovels(params));
+        return Utils.response2Json(client.getNovels(params), isGzip);
     }
 }
