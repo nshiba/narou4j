@@ -4,15 +4,15 @@ import narou4j.enums.*;
 import narou4j.exception.NarouDuplicateException;
 import narou4j.exception.NarouOutOfRangeException;
 
-import java.io.IOException;
 import java.util.*;
 
 public class GetParameter {
     Map<String, String> params = new HashMap<>();
     private Set<OfParam> ofParamSet = new HashSet<>();
-    private Set<Genre> genreSet = new TreeSet<>();
-    private Set<Genre> notGenreSet = new TreeSet<>();
+    private Set<NovelGenre> novelGenreSet = new TreeSet<>();
+    private Set<NovelGenre> notNovelGenreSet = new TreeSet<>();
     private Set<Integer> userIdSet = new TreeSet<>();
+    private Set<String> ncodeSet = new TreeSet<>();
 
     public void setGzip(int rate) {
         if (rate < 1 || rate > 5) {
@@ -91,20 +91,20 @@ public class GetParameter {
         }
     }
 
-    public void setGenre(Genre genre) {
-        genreSet.add(genre);
+    public void setGenre(NovelGenre novelGenre) {
+        novelGenreSet.add(novelGenre);
     }
 
     String getGenre() {
-        return genre2String(genreSet);
+        return genre2String(novelGenreSet);
     }
 
-    public void setNotGenre(Genre genre) {
-        notGenreSet.add(genre);
+    public void setNotGenre(NovelGenre novelGenre) {
+        notNovelGenreSet.add(novelGenre);
     }
 
     String getNotGenre() {
-        return genre2String(notGenreSet);
+        return genre2String(notNovelGenreSet);
     }
 
     public void setUserId(int id) {
@@ -151,8 +151,8 @@ public class GetParameter {
             params.remove("length");
         }
 
-        System.out.println(time2String(min, max));
-        params.put("length", time2String(min, max));
+        System.out.println(range2String(String.valueOf(min), String.valueOf(max)));
+        params.put("length", range2String(String.valueOf(min), String.valueOf(max)));
     }
 
     public void setReadTime(int length) {
@@ -175,16 +175,16 @@ public class GetParameter {
             params.remove("time");
         }
 
-        System.out.println(time2String(min, max));
-        params.put("time", time2String(min, max));
+        System.out.println(range2String(String.valueOf(min), String.valueOf(max)));
+        params.put("time", range2String(String.valueOf(min), String.valueOf(max)));
     }
 
-    public void setConversationRate(int length) {
+    public void setConversationRate(int rate) {
         if (params.containsKey("kaiwaritu")) {
             System.out.println("remove kaiwaritu");
             params.remove("kaiwaritu");
         }
-        params.put("kaiwaritu", String.valueOf(length));
+        params.put("kaiwaritu", String.valueOf(rate));
     }
 
     public void setConversationRate(int min, int max) {
@@ -193,18 +193,87 @@ public class GetParameter {
             params.remove("kaiwaritu");
         }
 
-        System.out.println(time2String(min, max));
-        params.put("kaiwaritu", time2String(min, max));
+        System.out.println(range2String(String.valueOf(min), String.valueOf(max)));
+        params.put("kaiwaritu", range2String(String.valueOf(min), String.valueOf(max)));
+    }
+
+    public void setArtworks(int num) {
+        if (params.containsKey("sasie")) {
+            System.out.println("remove sasie");
+            params.remove("sasie");
+        }
+        params.put("sasie", String.valueOf(num));
+    }
+
+    public void setArtworks(int min, int max) {
+        if (params.containsKey("sasie")) {
+            System.out.println("remove sasie");
+            params.remove("sasie");
+        }
+
+        System.out.println(range2String(String.valueOf(min), String.valueOf(max)));
+        params.put("sasie", range2String(String.valueOf(min), String.valueOf(max)));
+    }
+
+    public void setNCode(String ncode) {
+        ncodeSet.add(ncode);
+    }
+
+    String getNcodes() {
+        StringBuilder builder = new StringBuilder();
+
+        int i = 1;
+        for (String ncode : ncodeSet) {
+            builder.append(ncode);
+            if (i != ncodeSet.size()) {
+                builder.append("-");
+            }
+
+            i++;
+        }
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
+    public void setNovelType(NovelType type) {
+        params.put("type", type.getId());
+    }
+
+    public void setExcludeStop(boolean isExclude) {
+        if (isExclude) {
+            params.put("stop", "1");
+        }
+        else {
+            params.put("stop", "2");
+        }
+    }
+
+    public void setPickup(boolean isPickup) {
+        if (isPickup) {
+            params.put("ispickup", "1");
+        }
+        else {
+            params.put("ispickup", "2");
+        }
+    }
+
+    public void setLastUploadAt(UploadAt at) {
+        params.put("lastup", at.getId());
+    }
+
+    public void setLastUploadAt(Date min, Date max) {
+        long minUnixtime = min.getTime() / 1000L;
+        long maxUnixtime = max.getTime() / 1000L;
     }
 
 
 
-    private String genre2String(Set<Genre> set) {
+    private String genre2String(Set<NovelGenre> set) {
         StringBuilder builder = new StringBuilder();
 
         int i = 1;
-        for (Genre genre : set) {
-            builder.append(genre.getId());
+        for (NovelGenre novelGenre : set) {
+            builder.append(novelGenre.getId());
             if (i != set.size()) {
                 builder.append("-");
             }
@@ -215,13 +284,13 @@ public class GetParameter {
         return builder.toString();
     }
 
-    private String time2String(int min, int max) {
+    private String range2String(String min, String max) {
         StringBuilder builder = new StringBuilder();
-        if (min <= 0) {
+        if (min.equals("0")) {
             builder.append("-")
                     .append(String.valueOf(max));
         }
-        else if (max <= 0) {
+        else if (max.equals("0")) {
             builder.append(String.valueOf(min))
                     .append("-");
         }
