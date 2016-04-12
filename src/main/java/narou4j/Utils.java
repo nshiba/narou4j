@@ -8,9 +8,9 @@ import java.io.*;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 
-public class Utils {
+class Utils {
 
-    public static List<Novel> response2Json(Response response, boolean isGzip) {
+    static List<Novel> response2Json(Response response, boolean isGzip) {
         ObjectMapper mapper = new ObjectMapper();
         String str = null;
 
