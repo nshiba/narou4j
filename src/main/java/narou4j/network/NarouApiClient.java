@@ -9,6 +9,12 @@ public class NarouApiClient {
 
     private OkHttpClient client = new OkHttpClient();
 
+    /**
+     * 小説を指定されたパラメータで取得する．
+     *
+     * @param params 指定するパラメータのHashMap
+     * @return HTTP通信のレスポンス {@link Response}
+     */
     public Response getNovels(Map<String, String> params) {
         HttpUrl.Builder builder = NarouUrlBuilder.buildApiUrl();
         for (String key : params.keySet()) {

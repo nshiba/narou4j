@@ -1,9 +1,6 @@
 import narou4j.Narou;
-import narou4j.Novel;
 import narou4j.enums.NovelType;
 import narou4j.enums.OutputOrder;
-
-import java.util.List;
 
 public class Main {
 
