@@ -1,6 +1,9 @@
 import narou4j.Narou;
+import narou4j.Novel;
 import narou4j.enums.NovelType;
 import narou4j.enums.OutputOrder;
+
+import java.util.Date;
 
 public class Main {
 
@@ -59,6 +62,8 @@ public class Main {
 //        }
 //        System.out.println(novels.size());
 
+        Novel novel = narou.getNovel("N9669BK");
+        System.out.println(novel.getFirstUploadDate());
         System.out.println(narou.getNovel("N9669BK"));
     }
 }
