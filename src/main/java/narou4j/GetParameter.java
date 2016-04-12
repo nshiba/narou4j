@@ -75,7 +75,6 @@ public class GetParameter {
 
             i++;
         }
-        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -250,7 +249,6 @@ public class GetParameter {
 
             i++;
         }
-        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -291,7 +289,6 @@ public class GetParameter {
             throw new NarouDuplicateException("character length is not used in conjunction with the reading time. ");
         }
 
-        System.out.println(range2String(String.valueOf(min), String.valueOf(max)));
         params.put("length", range2String(String.valueOf(min), String.valueOf(max)));
     }
 
@@ -322,7 +319,6 @@ public class GetParameter {
             throw new NarouDuplicateException("reading time is not used in conjunction with the character length. ");
         }
 
-        System.out.println(range2String(String.valueOf(min), String.valueOf(max)));
         params.put("time", range2String(String.valueOf(min), String.valueOf(max)));
     }
 
@@ -342,7 +338,6 @@ public class GetParameter {
      * @param max int (0を指定するとmin以上で検索します．)
      */
     public void setConversationRate(int min, int max) {
-        System.out.println(range2String(String.valueOf(min), String.valueOf(max)));
         params.put("kaiwaritu", range2String(String.valueOf(min), String.valueOf(max)));
     }
 
@@ -362,7 +357,6 @@ public class GetParameter {
      * @param max int (0を指定するとmin以上で検索します．)
      */
     public void setArtworks(int min, int max) {
-        System.out.println(range2String(String.valueOf(min), String.valueOf(max)));
         params.put("sasie", range2String(String.valueOf(min), String.valueOf(max)));
     }
 
@@ -400,7 +394,6 @@ public class GetParameter {
 
             i++;
         }
-        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -500,7 +493,6 @@ public class GetParameter {
 
             i++;
         }
-        System.out.println(builder.toString());
         return builder.toString();
     }
 
