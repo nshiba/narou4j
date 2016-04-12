@@ -2,8 +2,12 @@ package narou4j;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import narou4j.enums.NovelGenre;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Novel implements Serializable{
@@ -14,7 +18,7 @@ public class Novel implements Serializable{
     private String userId;
     private String writer;
     private String story;
-    private int genre;
+    private NovelGenre genre;
     private int gensaku;
     private String keyword;
     @JsonProperty("general_firstup")
@@ -44,11 +48,13 @@ public class Novel implements Serializable{
     private int allHyokaCount;
     @JsonProperty("sasie_cnt")
     private int sasieCount;
-    private int kaiwaritu;
+    private int conversationRate;
     @JsonProperty("novelupdated_at")
     private String nobelUpdatedAt;
     @JsonProperty("updated_at")
     private String updatedAt;
+
+    private SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS");
 
     public int getAllcount() {
         return allcount;
@@ -98,11 +104,15 @@ public class Novel implements Serializable{
         this.story = story;
     }
 
-    public int getGenre() {
+    public NovelGenre getGenre() {
         return genre;
     }
 
     public void setGenre(int genre) {
+        this.genre = NovelGenre.valueOf(genre);
+    }
+
+    public void setGenre(NovelGenre genre) {
         this.genre = genre;
     }
 
@@ -122,20 +132,38 @@ public class Novel implements Serializable{
         this.keyword = keyword;
     }
 
-    public String getFirstUploadDate() {
-        return firstUploadDate;
+    public Date getFirstUploadDate() {
+        try {
+            return format.parse(firstUploadDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void setFirstUploadDate(String firstUploadDate) {
         this.firstUploadDate = firstUploadDate;
     }
 
-    public String getLastUploadDate() {
-        return lastUploadDate;
+    public void setFirstUploadDate(Date firstUploadDate) {
+        this.firstUploadDate = format.format(firstUploadDate);
+    }
+
+    public Date getLastUploadDate() {
+        try {
+            return format.parse(lastUploadDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void setLastUploadDate(String lastUploadDate) {
         this.lastUploadDate = lastUploadDate;
+    }
+
+    public void setLastUploadDate(Date lastUploadDate) {
+        this.lastUploadDate = format.format(lastUploadDate);
     }
 
     public int getNovelType() {
@@ -234,12 +262,12 @@ public class Novel implements Serializable{
         this.sasieCount = sasieCount;
     }
 
-    public int getKaiwaritu() {
-        return kaiwaritu;
+    public int getConversationRate() {
+        return conversationRate;
     }
 
-    public void setKaiwaritu(int kaiwaritu) {
-        this.kaiwaritu = kaiwaritu;
+    public void setConversationRate(int conversationRate) {
+        this.conversationRate = conversationRate;
     }
 
     public String getNobelUpdatedAt() {
@@ -261,32 +289,32 @@ public class Novel implements Serializable{
     @Override
     public String toString() {
         return "Novel{" + "\n" +
-                "allcount=" + allcount + "\n" +
-                "title='" + title + '\'' + "\n" +
-                "ncode='" + ncode + '\'' + "\n" +
-                "userId='" + userId + '\'' + "\n" +
-                "writer='" + writer + '\'' + "\n" +
-                "story='" + story + '\'' + "\n" +
-                "genre=" + genre + "\n" +
-                "gensaku=" + gensaku + "\n" +
-                "keyword='" + keyword + '\'' + "\n" +
-                "firstUploadDate='" + firstUploadDate + '\'' + "\n" +
-                "lastUploadDate='" + lastUploadDate + '\'' + "\n" +
-                "novelType=" + novelType + "\n" +
-                "isNovelContinue=" + isNovelContinue + "\n" +
-                "allNumberOfNovel=" + allNumberOfNovel + "\n" +
-                "numberOfChar=" + numberOfChar + "\n" +
-                "time=" + time + "\n" +
-                "uploadType=" + uploadType + "\n" +
-                "globalPoint=" + globalPoint + "\n" +
-                "favCount=" + favCount + "\n" +
-                "reviewCount=" + reviewCount + "\n" +
-                "allPoint=" + allPoint + "\n" +
-                "allHyokaCount=" + allHyokaCount + "\n" +
-                "sasieCount=" + sasieCount + "\n" +
-                "kaiwaritu=" + kaiwaritu + "\n" +
-                "nobelUpdatedAt='" + nobelUpdatedAt + '\'' + "\n" +
-                "updatedAt='" + updatedAt + '\'' + "\n" +
+                "allcount=" + getAllcount() + "\n" +
+                "title='" + getTitle() + '\'' + "\n" +
+                "ncode='" + getNcode() + '\'' + "\n" +
+                "userId='" + getUserId() + '\'' + "\n" +
+                "writer='" + getWriter() + '\'' + "\n" +
+                "story='" + getStory() + '\'' + "\n" +
+                "genre=" + getGenre() + "\n" +
+                "gensaku=" + getGensaku() + "\n" +
+                "keyword='" + getKeyword() + '\'' + "\n" +
+                "firstUploadDate='" + getFirstUploadDate() + '\'' + "\n" +
+                "lastUploadDate='" + getLastUploadDate() + '\'' + "\n" +
+                "novelType=" + getNovelType() + "\n" +
+                "isNovelContinue=" + getIsNovelContinue() + "\n" +
+                "allNumberOfNovel=" + getAllNumberOfNovel() + "\n" +
+                "numberOfChar=" + getNumberOfChar() + "\n" +
+                "time=" + getTime() + "\n" +
+                "uploadType=" + getUploadType() + "\n" +
+                "globalPoint=" + getGlobalPoint() + "\n" +
+                "favCount=" + getFavCount() + "\n" +
+                "reviewCount=" + getReviewCount() + "\n" +
+                "allPoint=" + getAllcount() + "\n" +
+                "allHyokaCount=" + getAllHyokaCount() + "\n" +
+                "sasieCount=" + getSasieCount() + "\n" +
+                "conversationRate=" + getConversationRate() + "\n" +
+                "nobelUpdatedAt='" + getNobelUpdatedAt() + '\'' + "\n" +
+                "updatedAt='" + getUpdatedAt() + '\'' + "\n" +
                 '}';
     }
 }

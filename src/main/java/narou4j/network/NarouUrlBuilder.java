@@ -1,4 +1,4 @@
-package narou4j.networks;
+package narou4j.network;
 
 import okhttp3.HttpUrl;
 
@@ -17,9 +17,9 @@ public class NarouUrlBuilder {
 
     /**
      * http://api.syosetu.com/novelapi/api/
-     * @return HttpUrl.Builder
+     * @return {@link okhttp3.HttpUrl.Builder}
      */
-    public static HttpUrl.Builder buildApiUrl() {
+    static HttpUrl.Builder buildApiUrl() {
         return buildRootUrl().addPathSegment(API);
     }
 }

@@ -1,21 +1,43 @@
 package narou4j;
 
-import narou4j.networks.NarouApiClient;
-import okhttp3.Call;
-import okhttp3.Response;
+import narou4j.network.NarouApiClient;
 
-import java.io.IOException;
 import java.util.List;
 
-public class Narou {
+public class Narou extends GetParameter {
 
+    private NarouApiClient client;
+
+    public Narou() {
+        params.put("out", "json");
+        setGzip(5);
+    }
+
+    /**
+     * パラメータにセットされた項目で小説を検索し結果をListで返すメソッド．
+     *
+     * @return List<Novel> {@link Novel}
+     */
     public List<Novel> getNovels() {
-        NarouApiClient client = new NarouApiClient() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-            }
-        };
+        client = new NarouApiClient();
+        params.put("of", getOfParam());
+        params.put("genre", getGenre());
+        params.put("notgenre", getNotGenre());
+        params.put("userid", getUserIds());
+        params.put("ncode", getNcodes());
+        return Utils.response2Json(client.getNovels(params), isGzip);
+    }
 
-        return Utils.response2Json(client.getAllNovel());
+    /**
+     * 小説のNコードを指定して取得します．
+     *
+     * @param ncode String
+     * @return Novel {@link Novel}
+     */
+    public Novel getNovel(String ncode) {
+        client = new NarouApiClient();
+        params.put("ncode", ncode);
+        List<Novel> novels = Utils.response2Json(client.getNovels(params), isGzip);
+        return novels.get(novels.size() -1);
     }
 }
