@@ -2,6 +2,7 @@ package narou4j;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import narou4j.enums.NovelGenre;
 
 import java.io.Serializable;
 
@@ -14,7 +15,7 @@ public class Novel implements Serializable{
     private String userId;
     private String writer;
     private String story;
-    private int genre;
+    private NovelGenre genre;
     private int gensaku;
     private String keyword;
     @JsonProperty("general_firstup")
@@ -98,11 +99,15 @@ public class Novel implements Serializable{
         this.story = story;
     }
 
-    public int getGenre() {
+    public NovelGenre getGenre() {
         return genre;
     }
 
     public void setGenre(int genre) {
+        this.genre = NovelGenre.valueOf(genre);
+    }
+
+    public void setGenre(NovelGenre genre) {
         this.genre = genre;
     }
 

@@ -1,5 +1,7 @@
 package narou4j.enums;
 
+import narou4j.Novel;
+
 /**
  * 小説のジャンル </br> </br>
  *
@@ -46,5 +48,15 @@ public enum NovelGenre {
 
     public int getId() {
         return this.id;
+    }
+
+    public static NovelGenre valueOf(int id) {
+        for (NovelGenre genre : values()) {
+            if (genre.getId() == id) {
+                return genre;
+            }
+        }
+
+        throw new IllegalArgumentException("no such enum object for the id: " + id);
     }
 }
