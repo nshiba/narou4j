@@ -374,7 +374,7 @@ public class GetParameter {
      * 小説のNコードを複数同時に指定します．<br>
      * 複数指定した場合はOR検索します.
      *
-     * @param ncodes
+     * @param ncodes String list Nコード
      */
     public void setNCode(String[] ncodes) {
         for (String ncode : ncodes) {

@@ -3,24 +3,24 @@ package narou4j.enums;
 import narou4j.Novel;
 
 /**
- * 小説のジャンル </br> </br>
+ * 小説のジャンル <br> <br>
  *
- * 1: 文学 LITERATURE </br>
- * 2: 恋愛 LOVE </br>
- * 3: 歴史 HISTORY </br>
- * 4: 推理 DETECTIVE </br>
- * 5: ファンタジー FANTASY </br>
- * 6: SF SF </br>
- * 7: ホラー HORROR </br>
- * 8: コメディー COMEDY </br>
- * 9: 冒険 ADVENTURE </br>
- * 10: 学園 ACADEMY </br>
+ * 1: 文学 LITERATURE <br>
+ * 2: 恋愛 LOVE <br>
+ * 3: 歴史 HISTORY <br>
+ * 4: 推理 DETECTIVE <br>
+ * 5: ファンタジー FANTASY <br>
+ * 6: SF SF <br>
+ * 7: ホラー HORROR <br>
+ * 8: コメディー COMEDY <br>
+ * 9: 冒険 ADVENTURE <br>
+ * 10: 学園 ACADEMY <br>
  * 11: 戦記 MILITARY_HISTORY
- * 12: 童話 FAIRYTALE </br>
- * 13: 詩 POEM </br>
- * 14: エッセイ ESSAY </br>
- * 16: リプレイ REPLAY </br>
- * 15: その他 OTHER </br>
+ * 12: 童話 FAIRYTALE <br>
+ * 13: 詩 POEM <br>
+ * 14: エッセイ ESSAY <br>
+ * 16: リプレイ REPLAY <br>
+ * 15: その他 OTHER <br>
  */
 public enum NovelGenre {
     LITERATURE(1),
