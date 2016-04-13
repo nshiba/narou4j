@@ -16,7 +16,7 @@ public class Narou extends GetParameter {
     /**
      * パラメータにセットされた項目で小説を検索し結果をListで返すメソッド．
      *
-     * @return List<Novel> {@link Novel}
+     * @return List Novel {@link Novel}
      */
     public List<Novel> getNovels() {
         client = new NarouApiClient();
