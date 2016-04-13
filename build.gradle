@@ -1,5 +1,5 @@
-group 'nshiba'
-version '1.0-SNAPSHOT'
+group 'net.nashihara'
+version '1.0'
 
 //apply plugin: 'java'
 
