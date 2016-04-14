@@ -3,7 +3,7 @@
 本家はこちら [http://dev.syosetu.com/man/api/](http://dev.syosetu.com/man/api/)
 
 # Download
-[Download the jar](http://search.maven.org/remotecontent?filepath=net/nashihara/narou4j/1.0/narou4j-1.0.jar)
+[Download Jar](http://search.maven.org/remotecontent?filepath=net/nashihara/narou4j/1.0/narou4j-1.0.jar)
 
 or Gradle  
 ```
