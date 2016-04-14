@@ -6,12 +6,12 @@
 [Download Jar](http://search.maven.org/remotecontent?filepath=net/nashihara/narou4j/1.0/narou4j-1.0.jar)
 
 or Gradle  
-```
+```gradle
 compile 'net.nashihara:narou4j:1.0'
 ```
 
 or Maven  
-```
+```xml
 <dependency>
     <groupId>net.nashihara</groupId>
     <artifactId>narou4j</artifactId>
