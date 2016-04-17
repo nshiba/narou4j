@@ -1,13 +1,16 @@
 # narou4j
 小説家になろうAPIのJavaラッパーライブラリです。  
-本家はこちら [http://dev.syosetu.com/man/api/](http://dev.syosetu.com/man/api/)
+本家様はこちら [http://dev.syosetu.com/man/api/](http://dev.syosetu.com/man/api/)
+
+「小説家になろう」は株式会社ヒナプロジェクトの登録商標です．
+また，本プログラムは株式会社ヒナプロジェクトが提供するものではありません．
 
 # Download
-[Download Jar](http://search.maven.org/remotecontent?filepath=net/nashihara/narou4j/1.0/narou4j-1.0.jar)
+[Download Jar](http://search.maven.org/remotecontent?filepath=net/nashihara/narou4j/1.1.0/narou4j-1.1.0.jar)
 
 or Gradle  
 ```gradle
-compile 'net.nashihara:narou4j:1.0'
+compile 'net.nashihara:narou4j:1.1.0'
 ```
 
 or Maven  
@@ -15,13 +18,13 @@ or Maven
 <dependency>
     <groupId>net.nashihara</groupId>
     <artifactId>narou4j</artifactId>
-    <version>1.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
 # Dependencies
-* [Okhttp](https://github.com/square/okhttp)
-* [Jackson](https://github.com/FasterXML/jackson)
+* [Okhttp 3.2.0](https://github.com/square/okhttp)
+* [Jackson 2.7.0](https://github.com/FasterXML/jackson)
 
 # License
 ```
@@ -39,8 +42,23 @@ limitations under the License.
 ```
 
 # Usage
-小説20件を新着順で取得  
+## 小説20件を新着順で取得  
 ```Java
 Narou narou = new Narou();
 List<Novel> novels = narou.getNovels();
 ```
+
+## ランキングを取得
+```Java
+Ranking ranking = new Ranking();
+
+List<NovelRank> ranks = ranking.getRanking(RankingType.DAILY);
+// 週間ランキングを取得
+List<NovelRank> ranks = ranking.getRanking(RankingType.WEEKLY);
+// 月間ランキングを取得
+List<NovelRank> ranks = ranking.getRanking(RankingType.MONTHLY);
+// 四半期ランキングを取得
+List<NovelRank> ranks = ranking.getRanking(RankingType.QUARTET);
+```
+
+累計ランキングはNarouオブジェクトで総合評価順に指定すると累計ランキングの順番になります．
