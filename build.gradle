@@ -9,7 +9,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 // Mainクラスを指定（パッケージ含む）
-mainClassName = 'Narou'
+mainClassName = 'narou4j.Main'
 
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
