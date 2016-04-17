@@ -4,7 +4,7 @@ import narou4j.network.NarouApiClient;
 
 import java.util.List;
 
-public class Narou extends GetParameter {
+public class Narou extends GetParameter4Narou {
 
     private NarouApiClient client;
 
@@ -25,7 +25,7 @@ public class Narou extends GetParameter {
         params.put("notgenre", getNotGenre());
         params.put("userid", getUserIds());
         params.put("ncode", getNcodes());
-        return Utils.response2Json(client.getNovels(params), isGzip);
+        return Utils.response2Json4Novel(client.getNovels(params), isGzip);
     }
 
     /**
@@ -37,7 +37,7 @@ public class Narou extends GetParameter {
     public Novel getNovel(String ncode) {
         client = new NarouApiClient();
         params.put("ncode", ncode);
-        List<Novel> novels = Utils.response2Json(client.getNovels(params), isGzip);
+        List<Novel> novels = Utils.response2Json4Novel(client.getNovels(params), isGzip);
         return novels.get(novels.size() -1);
     }
 }

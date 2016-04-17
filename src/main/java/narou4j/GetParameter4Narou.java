@@ -6,7 +6,7 @@ import narou4j.exception.NarouOutOfRangeException;
 
 import java.util.*;
 
-public class GetParameter {
+public class GetParameter4Narou {
     Map<String, String> params = new HashMap<>();
     boolean isGzip = true;
 
@@ -139,7 +139,7 @@ public class GetParameter {
     }
 
     /**
-     * {@link GetParameter#setSearchWord(String)} と {@link GetParameter#setNotWord(String)} で指定した単語の抽出対象{@link SearchWordTarget}を指定します．<br>
+     * {@link GetParameter4Narou#setSearchWord(String)} と {@link GetParameter4Narou#setNotWord(String)} で指定した単語の抽出対象{@link SearchWordTarget}を指定します．<br>
      * 指定しない場合は全項目が抽出対象となります．
      *
      * @param target SearchWordTarget {@link SearchWordTarget}

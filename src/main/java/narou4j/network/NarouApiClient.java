@@ -1,5 +1,6 @@
 package narou4j.network;
 
+import narou4j.Narou;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -17,6 +18,36 @@ public class NarouApiClient {
      */
     public Response getNovels(Map<String, String> params) {
         HttpUrl.Builder builder = NarouUrlBuilder.buildApiUrl();
+        for (String key : params.keySet()) {
+            builder.addQueryParameter(key, params.get(key));
+        }
+
+        return enqueue(builder);
+    }
+
+    /**
+     * ランキングを指定されたパラメータで取得する．
+     *
+     * @param params 指定するパラメータのHashMap
+     * @return HTTP通信のレスポンス {@link Response}
+     */
+    public Response getRanking(Map<String, String> params) {
+        HttpUrl.Builder builder = NarouUrlBuilder.buildRankingUrl();
+        for (String key : params.keySet()) {
+            builder.addQueryParameter(key, params.get(key));
+        }
+
+        return enqueue(builder);
+    }
+
+    /**
+     * ランキングを指定されたパラメータで取得する．
+     *
+     * @param params 指定するパラメータのHashMap
+     * @return HTTP通信のレスポンス {@link Response}
+     */
+    public Response getRankinDetail(Map<String, String> params) {
+        HttpUrl.Builder builder = NarouUrlBuilder.buildRankinDetail();
         for (String key : params.keySet()) {
             builder.addQueryParameter(key, params.get(key));
         }

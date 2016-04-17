@@ -54,7 +54,7 @@ public class Novel implements Serializable{
     @JsonProperty("updated_at")
     private String updatedAt;
 
-    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-DD HH:MM:SS");
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
 
     public int getAllcount() {
         return allcount;
