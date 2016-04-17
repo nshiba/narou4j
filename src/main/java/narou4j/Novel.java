@@ -132,13 +132,8 @@ public class Novel implements Serializable{
         this.keyword = keyword;
     }
 
-    public Date getFirstUploadDate() {
-        try {
-            return format.parse(firstUploadDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public String getFirstUploadDate() {
+        return this.firstUploadDate;
     }
 
     public void setFirstUploadDate(String firstUploadDate) {
@@ -149,13 +144,8 @@ public class Novel implements Serializable{
         this.firstUploadDate = format.format(firstUploadDate);
     }
 
-    public Date getLastUploadDate() {
-        try {
-            return format.parse(lastUploadDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public String getLastUploadDate() {
+        return this.lastUploadDate;
     }
 
     public void setLastUploadDate(String lastUploadDate) {
