@@ -55,6 +55,20 @@ public class NarouApiClient {
         return enqueue(builder);
     }
 
+    /**
+     * 小説の目次ページを取得
+     *
+     * @param ncode String 小説コード
+     * @return HTTP通信のレスポンス {@link Response}
+     */
+    public Response getNovelTable(String ncode) {
+        return enqueue(NarouUrlBuilder.buildNovelTableUrl(ncode));
+    }
+
+    public Response getNovelBody(String ncode, int page) {
+        return enqueue(NarouUrlBuilder.buildNovelTableUrl(ncode).addPathSegment(String.valueOf(page)));
+    }
+
     private Response enqueue(HttpUrl.Builder builder) {
         Request request = new Request.Builder()
                 .url(builder.build())
