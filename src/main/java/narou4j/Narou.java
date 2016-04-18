@@ -1,7 +1,14 @@
 package narou4j;
 
 import narou4j.network.NarouApiClient;
+import okhttp3.Response;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Narou extends GetParameter4Narou {
@@ -39,5 +46,110 @@ public class Narou extends GetParameter4Narou {
         params.put("ncode", ncode);
         List<Novel> novels = Utils.response2Json4Novel(client.getNovels(params), isGzip);
         return novels.get(novels.size() -1);
+    }
+
+    /**
+     * 小説の目次のみを取得します
+     *
+     * @param ncode String 小説コード
+     * @return NovelBody list {@link NovelBody}
+     */
+    public List<NovelBody> getNovelTable(String ncode) {
+        client = new NarouApiClient();
+        Response response = client.getNovelTable(ncode);
+
+        String html = "";
+        try {
+            html = response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (html.equals("")) {
+            return null;
+        }
+
+        Document document = Jsoup.parse(html);
+        Elements elements = document.select(".index_box").first().children();
+        ArrayList<NovelBody> list = new ArrayList<>();
+        for (Element element : elements) {
+
+            NovelBody table = new NovelBody();
+
+            if (element.className().equals("chapter_title")) {
+                table.setChapter(true);
+                table.setTitle(element.ownText());
+                list.add(table);
+            }
+
+            if (element.className().equals("novel_sublist2")) {
+                Element el = element.select(".subtitle a").first();
+                table.setTitle(el.ownText());
+
+                String attr = el.attr("href");
+                String[] attrs = attr.split("/", 0);
+                table.setNcode(attrs[1]);
+                table.setPage(Integer.parseInt(attrs[2]));
+                list.add(table);
+            }
+        }
+
+        return list;
+    }
+
+    /**
+     * 指定した小説の指定したページの本文を取得します
+     *
+     * @param ncode String 小説コード
+     * @param page int ページ数
+     * @return String 本文
+     */
+    public String getNovelBody(String ncode, int page) {
+        client = new NarouApiClient();
+        Response response = client.getNovelBody(ncode, page);
+
+        String html = "";
+        try {
+            html = response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (html.equals("")) {
+            return null;
+        }
+
+        Document document = Jsoup.parse(html);
+        Element element = document.getElementById("novel_honbun");
+
+        String body = element.html();
+        String kaigyo = System.getProperty("line.separator");
+        body = body.replaceAll(kaigyo, "");
+        body = body
+                .replaceAll("<ruby>", "")
+                .replaceAll("</ruby>", "")
+                .replaceAll("<rb>", "")
+                .replaceAll("</rb>", "")
+                .replaceAll("<rt>", "")
+                .replaceAll("</rt>", "")
+                .replaceAll("<rp>", "")
+                .replaceAll("</rp>", "");
+        body = body.replaceAll("<br>", kaigyo);
+        return body;
+    }
+
+    /**
+     * 指定した小説の全てのページの本文を含む目次を取得します
+     *
+     * @param ncode String 小説コード
+     * @return NovelBody list {@link NovelBody}
+     */
+    public List<NovelBody> getNovelAll(String ncode) {
+        ArrayList<NovelBody> list = new ArrayList<>(getNovelTable(ncode));
+        for (NovelBody body : list) {
+            body.setBody(getNovelBody(ncode, body.getPage()));
+        }
+
+        return list;
     }
 }
