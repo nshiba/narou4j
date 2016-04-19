@@ -6,11 +6,11 @@
 また，本プログラムは株式会社ヒナプロジェクトが提供するものではありません．
 
 # Download
-[Download Jar](http://search.maven.org/remotecontent?filepath=net/nashihara/narou4j/1.1.0/narou4j-1.1.0.jar)
+[Download Jar](http://search.maven.org/remotecontent?filepath=net/nashihara/narou4j/1.2.0/narou4j-1.2.0.jar)
 
 or Gradle  
 ```gradle
-compile 'net.nashihara:narou4j:1.1.0'
+compile 'net.nashihara:narou4j:1.2.0'
 ```
 
 or Maven  
@@ -18,7 +18,7 @@ or Maven
 <dependency>
     <groupId>net.nashihara</groupId>
     <artifactId>narou4j</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
