@@ -18,6 +18,7 @@ public class Narou extends GetParameter4Narou {
     public Narou() {
         params.put("out", "json");
         setGzip(5);
+        setAllParams();
     }
 
     /**
@@ -27,11 +28,6 @@ public class Narou extends GetParameter4Narou {
      */
     public List<Novel> getNovels() {
         client = new NarouApiClient();
-        params.put("of", getOfParam());
-        params.put("genre", getGenre());
-        params.put("notgenre", getNotGenre());
-        params.put("userid", getUserIds());
-        params.put("ncode", getNcodes());
         return Utils.response2Json4Novel(client.getNovels(params), isGzip);
     }
 
@@ -105,6 +101,10 @@ public class Narou extends GetParameter4Narou {
      * @return String 本文
      */
     public String getNovelBody(String ncode, int page) {
+        if (page == 0) {
+            return null;
+        }
+
         client = new NarouApiClient();
         Response response = client.getNovelBody(ncode, page);
 
@@ -119,8 +119,12 @@ public class Narou extends GetParameter4Narou {
             return null;
         }
 
+//        System.out.println("ncode: " + ncode + " page: " + String.valueOf(page));
+//        System.out.println(html);
         Document document = Jsoup.parse(html);
         Element element = document.getElementById("novel_honbun");
+
+//        System.out.println(element.select("ruby").outerHtml());
 
         String body = element.html();
         String kaigyo = System.getProperty("line.separator");
@@ -139,12 +143,44 @@ public class Narou extends GetParameter4Narou {
     }
 
     /**
+     * パラメータにセットされた項目で小説を検索し本文を含む全てを取得した小説リストを返します
+     *
+     * @return Novel list {@link Novel}
+     */
+    public List<Novel> getNovelsAll() {
+        List<Novel> novels = getNovels();
+        novels.remove(0);
+        for (Novel novel : novels) {
+            novel = getNovelAll(novel.getNcode());
+        }
+
+        return novels;
+    }
+
+    /**
+     * 指定した小説のページの本文を含む全てを取得します
+     *
+     * @param ncode String 小説コード
+     * @return Novel list {@link Novel}
+     */
+    public Novel getNovelAll(String ncode) {
+        Novel novel = getNovel(ncode);
+        ArrayList<NovelBody> list = new ArrayList<>(getNovelTable(ncode));
+        for (NovelBody body : list) {
+            body.setBody(getNovelBody(ncode, body.getPage()));
+        }
+        novel.setBodies(list);
+
+        return novel;
+    }
+
+    /**
      * 指定した小説の全てのページの本文を含む目次を取得します
      *
      * @param ncode String 小説コード
      * @return NovelBody list {@link NovelBody}
      */
-    public List<NovelBody> getNovelAll(String ncode) {
+    public List<NovelBody> getNovelBodyAll(String ncode) {
         ArrayList<NovelBody> list = new ArrayList<>(getNovelTable(ncode));
         for (NovelBody body : list) {
             body.setBody(getNovelBody(ncode, body.getPage()));

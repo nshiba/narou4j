@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Novel implements Serializable{
@@ -53,6 +54,7 @@ public class Novel implements Serializable{
     private String nobelUpdatedAt;
     @JsonProperty("updated_at")
     private String updatedAt;
+    private List<NovelBody> bodies;
 
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:MM:SS");
 
@@ -276,35 +278,44 @@ public class Novel implements Serializable{
         this.updatedAt = updatedAt;
     }
 
+    public List<NovelBody> getBodies() {
+        return bodies;
+    }
+
+    public void setBodies(List<NovelBody> bodies) {
+        this.bodies = bodies;
+    }
+
     @Override
     public String toString() {
-        return "Novel{" + "\n" +
-                "allcount=" + getAllcount() + "\n" +
-                "title='" + getTitle() + '\'' + "\n" +
-                "ncode='" + getNcode() + '\'' + "\n" +
-                "userId='" + getUserId() + '\'' + "\n" +
-                "writer='" + getWriter() + '\'' + "\n" +
-                "story='" + getStory() + '\'' + "\n" +
-                "genre=" + getGenre() + "\n" +
-                "gensaku=" + getGensaku() + "\n" +
-                "keyword='" + getKeyword() + '\'' + "\n" +
-                "firstUploadDate='" + getFirstUploadDate() + '\'' + "\n" +
-                "lastUploadDate='" + getLastUploadDate() + '\'' + "\n" +
-                "novelType=" + getNovelType() + "\n" +
-                "isNovelContinue=" + getIsNovelContinue() + "\n" +
-                "allNumberOfNovel=" + getAllNumberOfNovel() + "\n" +
-                "numberOfChar=" + getNumberOfChar() + "\n" +
-                "time=" + getTime() + "\n" +
-                "uploadType=" + getUploadType() + "\n" +
-                "globalPoint=" + getGlobalPoint() + "\n" +
-                "favCount=" + getFavCount() + "\n" +
-                "reviewCount=" + getReviewCount() + "\n" +
-                "allPoint=" + getAllcount() + "\n" +
-                "allHyokaCount=" + getAllHyokaCount() + "\n" +
-                "sasieCount=" + getSasieCount() + "\n" +
-                "conversationRate=" + getConversationRate() + "\n" +
-                "nobelUpdatedAt='" + getNobelUpdatedAt() + '\'' + "\n" +
-                "updatedAt='" + getUpdatedAt() + '\'' + "\n" +
+        return "Novel{" + '\'' +
+                "bodies=" + bodies + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", nobelUpdatedAt='" + nobelUpdatedAt + '\'' +
+                ", conversationRate=" + conversationRate + '\'' +
+                ", sasieCount=" + sasieCount + '\'' +
+                ", allHyokaCount=" + allHyokaCount + '\'' +
+                ", allPoint=" + allPoint + '\'' +
+                ", reviewCount=" + reviewCount + '\'' +
+                ", favCount=" + favCount + '\'' +
+                ", globalPoint=" + globalPoint + '\'' +
+                ", uploadType=" + uploadType + '\'' +
+                ", time=" + time + '\'' +
+                ", numberOfChar=" + numberOfChar + '\'' +
+                ", allNumberOfNovel=" + allNumberOfNovel + '\'' +
+                ", isNovelContinue=" + isNovelContinue + '\'' +
+                ", novelType=" + novelType + '\'' +
+                ", lastUploadDate='" + lastUploadDate + '\'' +
+                ", firstUploadDate='" + firstUploadDate + '\'' +
+                ", keyword='" + keyword + '\'' +
+                ", gensaku=" + gensaku + '\'' +
+                ", genre=" + genre + '\'' +
+                ", story='" + story + '\'' +
+                ", writer='" + writer + '\'' +
+                ", userId='" + userId + '\'' +
+                ", ncode='" + ncode + '\'' +
+                ", title='" + title + '\'' +
+                ", allcount=" + allcount + '\'' +
                 '}';
     }
 }

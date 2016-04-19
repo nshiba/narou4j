@@ -49,7 +49,7 @@ public class NovelBody {
 
     @Override
     public String toString() {
-        return "NovelBody{" +
+        return "NovelBody{" + '\'' +
                 "ncode='" + ncode + '\'' +
                 ", title='" + title + '\'' +
                 ", page=" + page +
