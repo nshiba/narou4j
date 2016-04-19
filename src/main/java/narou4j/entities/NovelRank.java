@@ -1,4 +1,4 @@
-package narou4j;
+package narou4j.entities;
 
 import java.io.Serializable;
 import java.text.ParseException;

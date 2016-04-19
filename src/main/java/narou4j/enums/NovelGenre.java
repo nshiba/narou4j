@@ -1,7 +1,5 @@
 package narou4j.enums;
 
-import narou4j.Novel;
-
 /**
  * 小説のジャンル <br> <br>
  *
