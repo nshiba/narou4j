@@ -47,6 +47,13 @@ class Utils {
     }
 
     private static String getBodyString(Response response, boolean isGzip) {
+//        try {
+//            String string = response.body().string();
+//            System.out.println(string);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         if (isGzip) {
             try {
                 try (BufferedReader br = new BufferedReader(

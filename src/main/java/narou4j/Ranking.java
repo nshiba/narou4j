@@ -39,4 +39,16 @@ public class Ranking extends GetParameter4Ranking {
         params.put("rtype", Utils.getRankingType2String(type, date));
         return Utils.response2Json4Ranking(client.getRanking(params), isGzip);
     }
+
+    /**
+     * 指定された小説コードの過去のランクイン情報を取得します
+     *
+     * @param ncode String 小説コード
+     * @return NovelRank list 過去の各ランクイン情報のリスト {@link NovelRank}
+     */
+    public List<NovelRank> getRankinDetail(String ncode) {
+        client = new NarouApiClient();
+        params.put("ncode", ncode);
+        return Utils.response2Json4Ranking(client.getRankinDetail(params), isGzip);
+    }
 }
