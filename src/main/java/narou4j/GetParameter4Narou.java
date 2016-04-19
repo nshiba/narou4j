@@ -16,6 +16,28 @@ public class GetParameter4Narou {
     private Set<Integer> userIdSet = new TreeSet<>();
     private Set<String> ncodeSet = new TreeSet<>();
 
+    boolean isSetEmpty(Set set) {
+        return set.size() <= 0;
+    }
+
+    void setAllParams() {
+        if (!isSetEmpty(ofParamSet)) {
+            params.put("of", getOfParam());
+        }
+        if (!isSetEmpty(novelGenreSet)) {
+            params.put("genre", getGenre());
+        }
+        if (!isSetEmpty(notNovelGenreSet)) {
+            params.put("notgenre", getNotGenre());
+        }
+        if (!isSetEmpty(userIdSet)) {
+            params.put("userid", getUserIds());
+        }
+        if (!isSetEmpty(ncodeSet)) {
+            params.put("ncode", getNcodes());
+        }
+    }
+
     /**
      * 出力結果をgzipに圧縮します．
      * デフォルトは 5
