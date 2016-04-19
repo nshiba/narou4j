@@ -17,6 +17,7 @@ public class GetParameter4Narou {
     private Set<String> ncodeSet = new TreeSet<>();
 
     boolean isSetEmpty(Set set) {
+        System.out.println(set.size());
         return set.size() <= 0;
     }
 
@@ -416,6 +417,7 @@ public class GetParameter4Narou {
 
             i++;
         }
+        System.out.println(builder.toString());
         return builder.toString();
     }
 

@@ -18,7 +18,6 @@ public class Narou extends GetParameter4Narou {
     public Narou() {
         params.put("out", "json");
         setGzip(5);
-        setAllParams();
     }
 
     /**
@@ -28,6 +27,7 @@ public class Narou extends GetParameter4Narou {
      */
     public List<Novel> getNovels() {
         client = new NarouApiClient();
+        setAllParams();
         return Utils.response2Json4Novel(client.getNovels(params), isGzip);
     }
 
@@ -40,6 +40,8 @@ public class Narou extends GetParameter4Narou {
     public Novel getNovel(String ncode) {
         client = new NarouApiClient();
         params.put("ncode", ncode);
+        setAllParams();
+
         List<Novel> novels = Utils.response2Json4Novel(client.getNovels(params), isGzip);
         return novels.get(novels.size() -1);
     }
@@ -52,6 +54,8 @@ public class Narou extends GetParameter4Narou {
      */
     public List<NovelBody> getNovelTable(String ncode) {
         client = new NarouApiClient();
+        setAllParams();
+
         Response response = client.getNovelTable(ncode);
 
         String html = "";
@@ -106,6 +110,8 @@ public class Narou extends GetParameter4Narou {
         }
 
         client = new NarouApiClient();
+        setAllParams();
+
         Response response = client.getNovelBody(ncode, page);
 
         String html = "";
