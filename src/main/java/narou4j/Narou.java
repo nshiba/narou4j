@@ -1,5 +1,7 @@
 package narou4j;
 
+import narou4j.entities.Novel;
+import narou4j.entities.NovelBody;
 import narou4j.network.NarouApiClient;
 import okhttp3.Response;
 import org.jsoup.Jsoup;
@@ -28,7 +30,12 @@ public class Narou extends GetParameter4Narou {
     public List<Novel> getNovels() {
         client = new NarouApiClient();
         setAllParams();
-        return Utils.response2Json4Novel(client.getNovels(params), isGzip);
+        try {
+            return Utils.response2Json4Novel(client.getNovels(params), isGzip);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -42,8 +49,14 @@ public class Narou extends GetParameter4Narou {
         params.put("ncode", ncode);
         setAllParams();
 
-        List<Novel> novels = Utils.response2Json4Novel(client.getNovels(params), isGzip);
-        return novels.get(novels.size() -1);
+        List<Novel> novels = null;
+        try {
+            novels = Utils.response2Json4Novel(client.getNovels(params), isGzip);
+            return novels.get(novels.size() -1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

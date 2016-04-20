@@ -1,8 +1,11 @@
 package narou4j;
 
+import narou4j.entities.NovelRank;
 import narou4j.enums.RankingType;
 import narou4j.network.NarouApiClient;
 
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -23,8 +26,41 @@ public class Ranking extends GetParameter4Ranking {
      */
     public List<NovelRank> getRanking(RankingType type) {
         client = new NarouApiClient();
-        params.put("rtype", Utils.getRankingType2String(type, new Date()));
-        return Utils.response2Json4Ranking(client.getRanking(params), isGzip);
+        try {
+            String typeString = Utils.getRankingType2String(type, new Date());
+            params.put("rtype", typeString);
+            return Utils.response2Json4Ranking(client.getRanking(params), isGzip);
+        } catch (IOException e) {
+            Calendar cal = Calendar.getInstance();
+            e.printStackTrace();
+            cal.setTime(new Date());
+            switch (type) {
+                case DAILY: {
+                    cal.add(Calendar.DAY_OF_MONTH, -1);
+                    break;
+                }
+                case WEEKLY: {
+                    cal.add(Calendar.DAY_OF_MONTH, -7);
+                    break;
+                }
+                case MONTHLY: {
+                    cal.add(Calendar.MONTH, -1);
+                    break;
+                }
+                case QUARTET: {
+                    cal.add(Calendar.MONTH, -3);
+                }
+            }
+
+            String typeString = Utils.getRankingType2String(type, cal.getTime());
+            params.put("rtype", typeString);
+            try {
+                return Utils.response2Json4Ranking(client.getRanking(params), isGzip);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+        return null;
     }
 
     /**
@@ -37,7 +73,12 @@ public class Ranking extends GetParameter4Ranking {
     public List<NovelRank> getRanking(RankingType type, Date date) {
         client = new NarouApiClient();
         params.put("rtype", Utils.getRankingType2String(type, date));
-        return Utils.response2Json4Ranking(client.getRanking(params), isGzip);
+        try {
+            return Utils.response2Json4Ranking(client.getRanking(params), isGzip);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -49,6 +90,11 @@ public class Ranking extends GetParameter4Ranking {
     public List<NovelRank> getRankinDetail(String ncode) {
         client = new NarouApiClient();
         params.put("ncode", ncode);
-        return Utils.response2Json4Ranking(client.getRankinDetail(params), isGzip);
+        try {
+            return Utils.response2Json4Ranking(client.getRankinDetail(params), isGzip);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

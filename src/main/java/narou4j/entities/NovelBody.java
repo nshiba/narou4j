@@ -1,4 +1,4 @@
-package narou4j;
+package narou4j.entities;
 
 public class NovelBody {
     private String ncode;

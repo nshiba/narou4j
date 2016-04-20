@@ -2,6 +2,8 @@ package narou4j;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import narou4j.entities.Novel;
+import narou4j.entities.NovelRank;
 import narou4j.enums.RankingType;
 import okhttp3.Response;
 
@@ -13,11 +15,9 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.zip.GZIPInputStream;
 
-import static narou4j.enums.RankingType.*;
-
 class Utils {
 
-    static List<Novel> response2Json4Novel(Response response, boolean isGzip) {
+    static List<Novel> response2Json4Novel(Response response, boolean isGzip) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         String str = getBodyString(response, isGzip);
 
@@ -32,7 +32,7 @@ class Utils {
         return novels;
     }
 
-    static List<NovelRank> response2Json4Ranking(Response response, boolean isGzip) {
+    static List<NovelRank> response2Json4Ranking(Response response, boolean isGzip) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         String str =  getBodyString(response, isGzip);
 
@@ -46,7 +46,7 @@ class Utils {
         return rankings;
     }
 
-    private static String getBodyString(Response response, boolean isGzip) {
+    private static String getBodyString(Response response, boolean isGzip) throws IOException {
 //        try {
 //            String string = response.body().string();
 //            System.out.println(string);
@@ -55,31 +55,21 @@ class Utils {
 //        }
 
         if (isGzip) {
-            try {
-                try (BufferedReader br = new BufferedReader(
-                        new InputStreamReader(new GZIPInputStream(response.body().byteStream())))) {
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(new GZIPInputStream(response.body().byteStream())))) {
 
-                    StringBuilder builder = new StringBuilder();
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        builder.append(line);
-                    }
-
-                    return builder.toString();
+                StringBuilder builder = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    builder.append(line);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+
+                return builder.toString();
             }
         }
         else {
-            try {
-                return  response.body().string();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            return  response.body().string();
         }
-
-        return null;
     }
 
     static String day2ThuesDay(Date date) {
