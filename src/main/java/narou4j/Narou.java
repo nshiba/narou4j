@@ -115,9 +115,9 @@ public class Narou extends GetParameter4Narou {
      *
      * @param ncode String 小説コード
      * @param page int ページ数
-     * @return String 本文
+     * @return {@link NovelBody} 本文
      */
-    public String getNovelBody(String ncode, int page) {
+    public NovelBody getNovelBody(String ncode, int page) {
         if (page == 0) {
             return null;
         }
@@ -138,9 +138,17 @@ public class Narou extends GetParameter4Narou {
             return null;
         }
 
+        NovelBody result = new NovelBody();
+        result.setNcode(ncode);
+        result.setPage(page);
+
 //        System.out.println("ncode: " + ncode + " page: " + String.valueOf(page));
 //        System.out.println(html);
         Document document = Jsoup.parse(html);
+
+        String title = document.select(".novel_subtitle").first().ownText();
+        result.setTitle(title);
+
         Element element = document.getElementById("novel_honbun");
 
 //        System.out.println(element.select("ruby").outerHtml());
@@ -158,7 +166,8 @@ public class Narou extends GetParameter4Narou {
                 .replaceAll("<rp>", "")
                 .replaceAll("</rp>", "");
         body = body.replaceAll("<br>", kaigyo);
-        return body;
+        result.setBody(body);
+        return result;
     }
 
     /**
@@ -186,7 +195,9 @@ public class Narou extends GetParameter4Narou {
         Novel novel = getNovel(ncode);
         ArrayList<NovelBody> list = new ArrayList<>(getNovelTable(ncode));
         for (NovelBody body : list) {
-            body.setBody(getNovelBody(ncode, body.getPage()));
+            if (!body.isChapter()) {
+                body.setBody(getNovelBody(ncode, body.getPage()).getBody());
+            }
         }
         novel.setBodies(list);
 
@@ -202,7 +213,9 @@ public class Narou extends GetParameter4Narou {
     public List<NovelBody> getNovelBodyAll(String ncode) {
         ArrayList<NovelBody> list = new ArrayList<>(getNovelTable(ncode));
         for (NovelBody body : list) {
-            body.setBody(getNovelBody(ncode, body.getPage()));
+            if (!body.isChapter()) {
+                body.setBody(getNovelBody(ncode, body.getPage()).getBody());
+            }
         }
 
         return list;
