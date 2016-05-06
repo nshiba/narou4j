@@ -27,23 +27,6 @@ or Maven
 * [Jackson 2.7.0](https://github.com/FasterXML/jackson)
 * [jsoup 1.9.1](https://jsoup.org/)
 
-# License
-```
-Copyright 2016 Naoya Shibahara
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-```
-
 # Usage
 ## 小説20件を新着順で取得  
 ```Java
@@ -144,4 +127,21 @@ narou.getNovelAll(String ncode);
 
 // 指定した条件に当てはまる小説の情報、目次、本文の全てを取得（前回記事参照）
 narou.getNovelsAll();
+```
+
+# License
+```
+Copyright 2016 Naoya Shibahara
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 ```
