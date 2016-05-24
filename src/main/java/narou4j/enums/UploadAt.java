@@ -26,4 +26,14 @@ public enum UploadAt {
     public String getId() {
         return this.id;
     }
+
+    public static UploadAt getUploadAt(String id) {
+        for (UploadAt uploadAt : values()) {
+            if (id.equals(uploadAt.getId())) {
+                return uploadAt;
+            }
+        }
+
+        throw new IllegalArgumentException("no such enum object for the id: " + id);
+    }
 }

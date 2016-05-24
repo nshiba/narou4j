@@ -24,4 +24,14 @@ public enum SearchWordTarget {
     public int getId() {
         return this.id;
     }
+
+    public static SearchWordTarget getSearchWordTarget(String id) {
+        for (SearchWordTarget target : values()) {
+            if (id.equals(target.getId())) {
+                return target;
+            }
+        }
+
+        throw new IllegalArgumentException("no such enum object for the id: " + id);
+    }
 }

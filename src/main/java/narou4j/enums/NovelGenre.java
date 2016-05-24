@@ -3,40 +3,50 @@ package narou4j.enums;
 /**
  * 小説のジャンル <br> <br>
  *
- * 1: 文学 LITERATURE <br>
- * 2: 恋愛 LOVE <br>
- * 3: 歴史 HISTORY <br>
- * 4: 推理 DETECTIVE <br>
- * 5: ファンタジー FANTASY <br>
- * 6: SF SF <br>
- * 7: ホラー HORROR <br>
- * 8: コメディー COMEDY <br>
- * 9: 冒険 ADVENTURE <br>
- * 10: 学園 ACADEMY <br>
- * 11: 戦記 MILITARY_HISTORY
- * 12: 童話 FAIRYTALE <br>
- * 13: 詩 POEM <br>
- * 14: エッセイ ESSAY <br>
- * 16: リプレイ REPLAY <br>
- * 15: その他 OTHER <br>
+ * 101: 異世界[恋愛] LOVE_DIFF_WORLD <br>
+ * 102: 現実世界[恋愛] LOVE_REAL_WORLD <br>
+ * 201: ハイファンタジー[ファンタジー] FANTASY_HIGH <br>
+ * 202: ハイファンタジー[ファンタジー] FANTASY_LOW <br>
+ * 301: 純文学[文学] LITERAL_PURE <br>
+ * 302: ヒューマンドラマ[文学] LITERAL_DRAMA <br>
+ * 303: 歴史[文学] LITERAL_HISTORY <br>
+ * 304: 推理[文学] LITERAL_DETECTIVE <br>
+ * 305: ホラー[文学] LITERAL_HORROR <br>
+ * 306: アクション[文学] LITERAL_ACTION <br>
+ * 307: コメディ[文学] LITERAL_COMEDY <br>
+ * 401: VRゲーム [SF] SF_VR <br>
+ * 402: 宇宙 [SF] SF_SPACE <br>
+ * 403: 空想科学 [SF] SF_SCIENCE <br>
+ * 404: パニック [SF] SF_PANIC <br>
+ * 9901: 童話 [その他] OTHER_FAIRYTALE <br>
+ * 9902: 詩 [その他] OTHER_POEM <br>
+ * 9903: エッセイ [その他] OTHER_ESSAY <br>
+ * 9904: リプレイ [その他] OTHER_REPLAY <br>
+ * 9999: その他 [その他] OTHER <br>
+ * 9801: ノンジャンル [ノンジャンル] NONGENRE <br>
  */
 public enum NovelGenre {
-    LITERATURE(1),
-    LOVE(2),
-    HISTORY(3),
-    DETECTIVE(4),
-    FANTASY(5),
-    SF(6),
-    HORROR(7),
-    COMEDY(8),
-    ADVENTURE(9),
-    ACADEMY(10),
-    MILITARY_HISTORY(11),
-    FAIRYTALE(12),
-    POEM(13),
-    ESSAY(14),
-    REPLAY(16),
-    OTHER(15);
+    LOVE_DIFF_WORLD(101),
+    LOVE_REAL_WORLD(102),
+    FANTASY_HIGH(201),
+    FANTASY_LOW(202),
+    LITERAL_PURE(301),
+    LITERAL_DRAMA(302),
+    LITERAL_HISTORY(303),
+    LITERAL_DETECTIVE(304),
+    LITERAL_HORROR(305),
+    LITERAL_ACTION(306),
+    LITERAL_COMEDY(307),
+    SF_VR(401),
+    SF_SPACE(402),
+    SF_SCIENCE(403),
+    SF_PANIC(404),
+    OTHER_FAIRYTALE(9901),
+    OTHER_POEM(9902),
+    OTHER_ESSAY(9903),
+    OTHER_REPLAY(9904),
+    OTHER(9999),
+    NONGENRE(9801);
 
     private int id;
 

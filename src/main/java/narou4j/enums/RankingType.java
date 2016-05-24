@@ -23,4 +23,14 @@ public enum RankingType {
     public String getId() {
         return this.id;
     }
+
+    public static RankingType getOutputOrder(String id) {
+        for (RankingType type : values()) {
+            if (id.equals(type.getId())) {
+                return type;
+            }
+        }
+
+        throw new IllegalArgumentException("no such enum object for the id: " + id);
+    }
 }

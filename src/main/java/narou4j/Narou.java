@@ -2,6 +2,8 @@ package narou4j;
 
 import narou4j.entities.Novel;
 import narou4j.entities.NovelBody;
+import narou4j.entities.NovelRank;
+import narou4j.enums.RankingType;
 import narou4j.network.NarouApiClient;
 import okhttp3.Response;
 import org.jsoup.Jsoup;

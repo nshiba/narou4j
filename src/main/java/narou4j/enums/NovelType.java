@@ -25,4 +25,14 @@ public enum NovelType {
     public String getId() {
         return this.id;
     }
+
+    public static NovelType getNovelType(String id) {
+        for (NovelType type : values()) {
+            if (id.equals(type.getId())) {
+                return type;
+            }
+        }
+
+        throw new IllegalArgumentException("no such enum object for the id: " + id);
+    }
 }
