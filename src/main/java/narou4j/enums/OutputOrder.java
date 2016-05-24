@@ -39,4 +39,14 @@ public enum OutputOrder {
     public String getId() {
         return this.id;
     }
+
+    public static OutputOrder getOutputOrder(String id) {
+        for (OutputOrder order : values()) {
+            if (id.equals(order.getId())) {
+                return order;
+            }
+        }
+
+        throw new IllegalArgumentException("no such enum object for the id: " + id);
+    }
 }

@@ -34,6 +34,12 @@ public class Novel implements Serializable{
     @JsonProperty("length")
     private int numberOfChar;
     private int time;
+    private int isr15;
+    private int isbl;
+    private int isgl;
+    private int iszankoku;
+    private int istensei;
+    private int istenni;
     @JsonProperty("pc_or_k")
     private int uploadType;
     @JsonProperty("global_point")
@@ -197,6 +203,54 @@ public class Novel implements Serializable{
         this.time = time;
     }
 
+    public int getIsr15() {
+        return isr15;
+    }
+
+    public void setIsr15(int isr15) {
+        this.isr15 = isr15;
+    }
+
+    public int getIsbl() {
+        return isbl;
+    }
+
+    public void setIsbl(int isbl) {
+        this.isbl = isbl;
+    }
+
+    public int getIsgl() {
+        return isgl;
+    }
+
+    public void setIsgl(int isgl) {
+        this.isgl = isgl;
+    }
+
+    public int getIszankoku() {
+        return iszankoku;
+    }
+
+    public void setIszankoku(int iszankoku) {
+        this.iszankoku = iszankoku;
+    }
+
+    public int getIstensei() {
+        return istensei;
+    }
+
+    public void setIstensei(int istensei) {
+        this.istensei = istensei;
+    }
+
+    public int getIstenni() {
+        return istenni;
+    }
+
+    public void setIstenni(int istenni) {
+        this.istenni = istenni;
+    }
+
     public int getUploadType() {
         return uploadType;
     }
@@ -287,34 +341,40 @@ public class Novel implements Serializable{
 
     @Override
     public String toString() {
-        return "Novel{" + '\'' +
-                "bodies=" + bodies + '\'' +
-                ", updatedAt='" + updatedAt + '\'' +
-                ", nobelUpdatedAt='" + nobelUpdatedAt + '\'' +
-                ", conversationRate=" + conversationRate + '\'' +
-                ", sasieCount=" + sasieCount + '\'' +
-                ", allHyokaCount=" + allHyokaCount + '\'' +
-                ", allPoint=" + allPoint + '\'' +
-                ", reviewCount=" + reviewCount + '\'' +
-                ", favCount=" + favCount + '\'' +
-                ", globalPoint=" + globalPoint + '\'' +
-                ", uploadType=" + uploadType + '\'' +
-                ", time=" + time + '\'' +
-                ", numberOfChar=" + numberOfChar + '\'' +
-                ", allNumberOfNovel=" + allNumberOfNovel + '\'' +
-                ", isNovelContinue=" + isNovelContinue + '\'' +
-                ", novelType=" + novelType + '\'' +
-                ", lastUploadDate='" + lastUploadDate + '\'' +
-                ", firstUploadDate='" + firstUploadDate + '\'' +
-                ", keyword='" + keyword + '\'' +
-                ", gensaku=" + gensaku + '\'' +
-                ", genre=" + genre + '\'' +
-                ", story='" + story + '\'' +
-                ", writer='" + writer + '\'' +
-                ", userId='" + userId + '\'' +
-                ", ncode='" + ncode + '\'' +
+        return "Novel{" +
+                "allcount=" + allcount +
                 ", title='" + title + '\'' +
-                ", allcount=" + allcount + '\'' +
+                ", ncode='" + ncode + '\'' +
+                ", userId='" + userId + '\'' +
+                ", writer='" + writer + '\'' +
+                ", story='" + story + '\'' +
+                ", genre=" + genre +
+                ", gensaku=" + gensaku +
+                ", keyword='" + keyword + '\'' +
+                ", firstUploadDate='" + firstUploadDate + '\'' +
+                ", lastUploadDate='" + lastUploadDate + '\'' +
+                ", novelType=" + novelType + '\'' +
+                ", isNovelContinue=" + isNovelContinue + '\'' +
+                ", allNumberOfNovel=" + allNumberOfNovel + '\'' +
+                ", numberOfChar=" + numberOfChar + '\'' +
+                ", time=" + time + '\'' +
+                ", isr15=" + isr15 + '\'' +
+                ", isbl=" + isbl + '\'' +
+                ", isgl=" + isgl + '\'' +
+                ", iszankoku=" + iszankoku + '\'' +
+                ", istensei=" + istensei + '\'' +
+                ", istenni=" + istenni + '\'' +
+                ", uploadType=" + uploadType + '\'' +
+                ", globalPoint=" + globalPoint + '\'' +
+                ", favCount=" + favCount + '\'' +
+                ", reviewCount=" + reviewCount + '\'' +
+                ", allPoint=" + allPoint + '\'' +
+                ", allHyokaCount=" + allHyokaCount + '\'' +
+                ", sasieCount=" + sasieCount + '\'' +
+                ", conversationRate=" + conversationRate + '\'' +
+                ", nobelUpdatedAt='" + nobelUpdatedAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", bodies=" + bodies + '\'' +
                 '}';
     }
 }

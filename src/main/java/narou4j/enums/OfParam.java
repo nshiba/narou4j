@@ -10,6 +10,7 @@ package narou4j.enums;
  * USERID 作者のユーザID <br>
  * WRITER 作者名 <br>
  * STORY 小説のあらすじ <br>
+ * BIG_GENRE 小説の大ジャンル {@link NovelBigGenre} <br>
  * GENRE 小説のジャンル {@link NovelGenre} <br>
  * KEYWORD キーワード <br>
  * GENERAL_FIRSTUP 初回掲載日 <br>
@@ -20,6 +21,12 @@ package narou4j.enums;
  * LENGTH 小説文字数．スペースと改行はカウント数から除く <br>
  * TIME 小説読了時間 <br>
  * STOP 長期連載中は1，それ以外は0． <br>
+ * R15 登録必須キーワード 「r15」が含まれる場合は1, 違ければ0,
+ * BL 登録必須キーワード 「bl」が含まれる場合は1, 違ければ0,
+ * GL 登録必須キーワード 「gl」が含まれる場合は1, 違ければ0,
+ * ZANKOKU 登録必須キーワード 「zankoku」が含まれる場合は1, 違ければ0,
+ * TENSEI 登録必須キーワード 「tensei」が含まれる場合は1, 違ければ0,
+ * TENNI 登録必須キーワード 「tenni」が含まれる場合は1, 違ければ0,
  * PC_OR_K 投稿した端末．1はケータイのみ、2はPCのみ、3はPCとケータイ <br>
  * GLOBAL_POINT 総合得点 <br>
  * FAV_NOVEL_COUNT ブックマーク数 <br>
@@ -37,6 +44,7 @@ public enum OfParam {
     USERID("u"),
     WRITER("w"),
     STORY("s"),
+    BIG_GENRE("bg"),
     GENRE("g"),
     KEYWORD("k"),
     GENERAL_FIRSTUP("gf"),
@@ -47,6 +55,12 @@ public enum OfParam {
     LENGTH("l"),
     TIME("ti"),
     STOP("i"),
+    R15("isr15"),
+    BL("isbl"),
+    GL("isgl"),
+    ZANKOKU("iszankoku"),
+    TENSEI("istensei"),
+    TENNI("istenni"),
     PC_OR_K("p"),
     GLOBAL_POINT("gp"),
     FAV_NOVEL_COUNT("f"),
@@ -66,5 +80,15 @@ public enum OfParam {
 
     public String getId() {
         return this.id;
+    }
+
+    public static OfParam getNovelType(String id) {
+        for (OfParam ofParam : values()) {
+            if (id.equals(ofParam.getId())) {
+                return ofParam;
+            }
+        }
+
+        throw new IllegalArgumentException("no such enum object for the id: " + id);
     }
 }
