@@ -11,6 +11,8 @@ public class GetParameter4Narou {
     boolean isGzip = true;
 
     private Set<OfParam> ofParamSet = new HashSet<>();
+    private Set<NovelBigGenre> novelBigGenreSet = new TreeSet<>();
+    private Set<NovelBigGenre> notNovelBigGenreSet = new TreeSet<>();
     private Set<NovelGenre> novelGenreSet = new TreeSet<>();
     private Set<NovelGenre> notNovelGenreSet = new TreeSet<>();
     private Set<Integer> userIdSet = new TreeSet<>();
@@ -23,6 +25,12 @@ public class GetParameter4Narou {
     void setAllParams() {
         if (!isSetEmpty(ofParamSet)) {
             params.put("of", getOfParam());
+        }
+        if (!isSetEmpty(novelBigGenreSet)) {
+            params.put("biggenre", getBigGenre());
+        }
+        if (!isSetEmpty(notNovelBigGenreSet)) {
+            params.put("notbiggenre", getNotBigGenre());
         }
         if (!isSetEmpty(novelGenreSet)) {
             params.put("genre", getGenre());
@@ -188,6 +196,56 @@ public class GetParameter4Narou {
     }
 
     /**
+     * 取得する小説の大ジャンル{@link NovelBigGenre}を指定します．<br>
+     * 複数指定できます．
+     *
+     * @param novelBigGenre NovelGenre {@link NovelBigGenre}
+     */
+    public void setBigGenre(NovelBigGenre novelBigGenre) {
+        novelBigGenreSet.add(novelBigGenre);
+    }
+
+    /**
+     * 取得する小説の大ジャンル{@link NovelBigGenre}を複数同時に指定します．<br>
+     *
+     * @param genres NovelBigGenre[] {@link NovelBigGenre}
+     */
+    public void setBigGenre(NovelBigGenre[] genres) {
+        for (NovelBigGenre genre : genres) {
+            novelBigGenreSet.add(genre);
+        }
+    }
+
+    String getBigGenre() {
+        return bigGenre2String(novelBigGenreSet);
+    }
+
+    /**
+     * 取得する小説から除く大ジャンル{@link NovelBigGenre}を指定します．<br>
+     * 複数指定できます．
+     *
+     * @param genre NovelBigGenre {@link NovelBigGenre}
+     */
+    public void setNotBigGenre(NovelBigGenre genre) {
+        notNovelBigGenreSet.add(genre);
+    }
+
+    /**
+     * 取得する小説から除く大ジャンル{@link NovelBigGenre}を複数同時に指定します．<br>
+     *
+     * @param genres NovelBigGenre[] {@link NovelBigGenre}
+     */
+    public void setNotBigGenre(NovelBigGenre[] genres) {
+        for (NovelBigGenre genre : genres) {
+            notNovelBigGenreSet.add(genre);
+        }
+    }
+
+    String getNotBigGenre() {
+        return bigGenre2String(notNovelBigGenreSet);
+    }
+
+    /**
      * 取得する小説のジャンル{@link NovelGenre}を指定します．<br>
      * 複数指定できます．
      *
@@ -274,7 +332,106 @@ public class GetParameter4Narou {
         return builder.toString();
     }
 
-    
+    /**
+     * 登録必須キーワード「R15」に関する指定をします. <br>
+     * true を指定すると「R15」の作品だけ抽出し，
+     * false を指定すると「R15」の作品だけ除外します．
+     * @param isR15 boolean
+     */
+    public void setR15(boolean isR15) {
+        if (isR15) {
+            params.put("isr15", String.valueOf(1));
+        }
+        else {
+            params.put("notr15", String.valueOf(1));
+        }
+    }
+
+    /**
+     * 登録必須キーワード「ボーイズラブ」に関する指定をします. <br>
+     * true を指定すると「ボーイズラブ」の作品だけ抽出し，
+     * false を指定すると「ボーイズラブ」の作品だけ除外します．
+     * @param isBl boolean
+     */
+    public void setBl(boolean isBl) {
+        if (isBl) {
+            params.put("isbl", String.valueOf(1));
+        }
+        else {
+            params.put("notbl", String.valueOf(1));
+        }
+    }
+
+    /**
+     * 登録必須キーワード「ガールズラブ」に関する指定をします. <br>
+     * true を指定すると「ガールズラブ」の作品だけ抽出し，
+     * false を指定すると「ガールズラブ」の作品だけ除外します．
+     * @param isGl boolean
+     */
+    public void setGl(boolean isGl) {
+        if (isGl) {
+            params.put("isgl", String.valueOf(1));
+        }
+        else {
+            params.put("notgl", String.valueOf(1));
+        }
+    }
+
+    /**
+     * 登録必須キーワード「残酷な描写あり」に関する指定をします. <br>
+     * true を指定すると「残酷な描写あり」の作品だけ抽出し，
+     * false を指定すると「残酷な描写あり」の作品だけ除外します．
+     * @param isZankoku boolean
+     */
+    public void setZankoku(boolean isZankoku) {
+        if (isZankoku) {
+            params.put("iszankoku", String.valueOf(1));
+        }
+        else {
+            params.put("notzankoku", String.valueOf(1));
+        }
+    }
+
+    /**
+     * 登録必須キーワード「異世界転生」に関する指定をします. <br>
+     * true を指定すると「異世界転生」の作品だけ抽出し，
+     * false を指定すると「異世界転生」の作品だけ除外します．
+     * @param isTensei boolean
+     */
+    public void setTensei(boolean isTensei) {
+        if (isTensei) {
+            params.put("istensei", String.valueOf(1));
+        }
+        else {
+            params.put("nottensei", String.valueOf(1));
+        }
+    }
+
+    /**
+     * 登録必須キーワード「異世界転生」または「異世界転移」に関する指定をします. <br>
+     * true を指定すると「異世界転生」または「異世界転移」の作品だけ抽出します．
+     * @param isTt boolean
+     */
+    public void setTt(boolean isTt) {
+        if (isTt) {
+            params.put("istt", String.valueOf(1));
+        }
+    }
+
+    /**
+     * 登録必須キーワード「異世界転移」に関する指定をします. <br>
+     * true を指定すると「異世界転移」の作品だけ抽出し，
+     * false を指定すると「異世界転移」の作品だけ除外します．
+     * @param isTenni boolean
+     */
+    public void setTenni(boolean isTenni) {
+        if (isTenni) {
+            params.put("istenni", String.valueOf(1));
+        }
+        else {
+            params.put("nottenni", String.valueOf(1));
+        }
+    }
 
     /**
      * 小説の文字数を指定します．<br>
@@ -412,9 +569,9 @@ public class GetParameter4Narou {
     }
 
     /**
-     * 小説タイプ{@link NovelGenre}を指定します．<br>
+     * 小説タイプ{@link NovelType}を指定します．<br>
      *
-     * @param type NovelType {@link NovelGenre}
+     * @param type NovelType {@link NovelType}
      */
     public void setNovelType(NovelType type) {
         params.put("type", type.getId());
@@ -494,6 +651,21 @@ public class GetParameter4Narou {
     }
 
 
+
+    private String bigGenre2String(Set<NovelBigGenre> set) {
+        StringBuilder builder = new StringBuilder();
+
+        int i = 1;
+        for (NovelBigGenre novelGenre : set) {
+            builder.append(novelGenre.getId());
+            if (i != set.size()) {
+                builder.append("-");
+            }
+
+            i++;
+        }
+        return builder.toString();
+    }
 
     private String genre2String(Set<NovelGenre> set) {
         StringBuilder builder = new StringBuilder();

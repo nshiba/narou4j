@@ -17,19 +17,6 @@ import java.util.List;
 
 public class Narou extends GetParameter4Narou {
 
-    public static void main(String[] args) {
-        Narou narou = new Narou();
-        Ranking ranking = new Ranking();
-        List<NovelRank> ranking1 = ranking.getRanking(RankingType.WEEKLY);
-
-        for (NovelRank rank : ranking1) {
-            System.out.println(rank.getNcode());
-            Novel novel = narou.getNovel(rank.getNcode());
-            System.out.println(novel);
-            System.out.println();
-        }
-    }
-
     private NarouApiClient client;
 
     public Narou() {
