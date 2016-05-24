@@ -2,6 +2,8 @@ package narou4j;
 
 import narou4j.entities.Novel;
 import narou4j.entities.NovelBody;
+import narou4j.entities.NovelRank;
+import narou4j.enums.RankingType;
 import narou4j.network.NarouApiClient;
 import okhttp3.Response;
 import org.jsoup.Jsoup;
@@ -14,6 +16,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Narou extends GetParameter4Narou {
+
+    public static void main(String[] args) {
+        Narou narou = new Narou();
+        Ranking ranking = new Ranking();
+        List<NovelRank> ranking1 = ranking.getRanking(RankingType.WEEKLY);
+
+        for (NovelRank rank : ranking1) {
+            System.out.println(rank.getNcode());
+            Novel novel = narou.getNovel(rank.getNcode());
+            System.out.println(novel);
+            System.out.println();
+        }
+    }
 
     private NarouApiClient client;
 

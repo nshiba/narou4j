@@ -274,15 +274,7 @@ public class GetParameter4Narou {
         return builder.toString();
     }
 
-    /**
-     * 警告タグ{@link WarnigTag}を指定します．<br>
-     * 複数指定できます．
-     *
-     * @param tag WarningTag {@link WarnigTag}
-     */
-    public void setWarnigTag(WarnigTag tag) {
-        params.put(tag.getId(), String.valueOf(1));
-    }
+    
 
     /**
      * 小説の文字数を指定します．<br>
