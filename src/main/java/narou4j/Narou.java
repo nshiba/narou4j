@@ -17,6 +17,19 @@ import java.util.List;
 
 public class Narou extends GetParameter4Narou {
 
+    public static void main(String[] args) {
+        Narou narou = new Narou();
+        List<Novel> novels = narou.getNovels();
+
+        for (Novel novel : novels) {
+            System.out.println("Novel {");
+            System.out.println("    " + "allCount = " + novel.getAllcount());
+            System.out.println("    " + "ncode = " + novel.getNcode());
+            System.out.println("    " + "title = " + novel.getTitle());
+            System.out.println("}");
+        }
+    }
+
     private NarouApiClient client;
 
     public Narou() {
