@@ -24,7 +24,7 @@ public class Ranking extends GetParameter4Ranking {
      * @param type RankingType
      * @return NovelRank list
      */
-    public List<NovelRank> getRanking(RankingType type) {
+    public List<NovelRank> getRanking(RankingType type) throws IOException {
         client = new NarouApiClient();
         try {
             String typeString = Utils.getRankingType2String(type, new Date());
@@ -54,13 +54,8 @@ public class Ranking extends GetParameter4Ranking {
 
             String typeString = Utils.getRankingType2String(type, cal.getTime());
             params.put("rtype", typeString);
-            try {
-                return Utils.response2Json4Ranking(client.getRanking(params), isGzip);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+            return Utils.response2Json4Ranking(client.getRanking(params), isGzip);
         }
-        return null;
     }
 
     /**
@@ -70,15 +65,10 @@ public class Ranking extends GetParameter4Ranking {
      * @param date Date
      * @return NovelRank list
      */
-    public List<NovelRank> getRanking(RankingType type, Date date) {
+    public List<NovelRank> getRanking(RankingType type, Date date) throws IOException {
         client = new NarouApiClient();
         params.put("rtype", Utils.getRankingType2String(type, date));
-        try {
-            return Utils.response2Json4Ranking(client.getRanking(params), isGzip);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return Utils.response2Json4Ranking(client.getRanking(params), isGzip);
     }
 
     /**
@@ -87,14 +77,9 @@ public class Ranking extends GetParameter4Ranking {
      * @param ncode String 小説コード
      * @return NovelRank list 過去の各ランクイン情報のリスト {@link NovelRank}
      */
-    public List<NovelRank> getRankinDetail(String ncode) {
+    public List<NovelRank> getRankinDetail(String ncode) throws IOException {
         client = new NarouApiClient();
         params.put("ncode", ncode);
-        try {
-            return Utils.response2Json4Ranking(client.getRankinDetail(params), isGzip);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return Utils.response2Json4Ranking(client.getRankinDetail(params), isGzip);
     }
 }

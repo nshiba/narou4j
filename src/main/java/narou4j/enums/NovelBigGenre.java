@@ -1,5 +1,8 @@
 package narou4j.enums;
 
+import java.util.HashMap;
+import java.util.StringTokenizer;
+
 /**
  * 小説の大ジャンル <br> <br>
  *
@@ -11,21 +14,33 @@ package narou4j.enums;
  * 98: ノンジャンル NONGENRE <br>
  */
 public enum NovelBigGenre {
-    LOVE(1),
-    FANTASY(2),
-    LITERATURE(3),
-    SF(4),
-    OTHER(99),
-    NONGENRE(98);
+    LOVE(1, "恋愛"),
+    FANTASY(2, "ファンタジー"),
+    LITERATURE(3, "文学"),
+    SF(4, "SF"),
+    OTHER(99, "その他"),
+    NONGENRE(98, "ノンジャンル");
 
     private int id;
+    private String text;
+    private HashMap<Integer, String> values = new HashMap<>();
 
-    private NovelBigGenre(int id) {
+    private NovelBigGenre(int id, String text) {
         this.id = id;
+        this.text = text;
+        values.put(id, text);
     }
 
     public int getId() {
-        return this.id;
+        return id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public HashMap<Integer, String> getValues() {
+        return values;
     }
 
     public static NovelBigGenre valueOf(int id) {

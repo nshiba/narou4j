@@ -17,6 +17,29 @@ import java.util.List;
 
 public class Narou extends GetParameter4Narou {
 
+    public static void main(String[] args) {
+        Narou narou = new Narou();
+        List<Novel> novels = null;
+        try {
+            novels = narou.getNovels();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (novels == null) {
+            System.out.println("novels is null");
+            return;
+        }
+
+        for (Novel novel : novels) {
+            System.out.println("Novel {");
+            System.out.println("    " + "allCount = " + novel.getAllcount());
+            System.out.println("    " + "ncode = " + novel.getNcode());
+            System.out.println("    " + "title = " + novel.getTitle());
+            System.out.println("}");
+        }
+    }
+
     private NarouApiClient client;
 
     public Narou() {
@@ -29,15 +52,10 @@ public class Narou extends GetParameter4Narou {
      *
      * @return List Novel {@link Novel}
      */
-    public List<Novel> getNovels() {
+    public List<Novel> getNovels() throws IOException {
         client = new NarouApiClient();
         setAllParams();
-        try {
-            return Utils.response2Json4Novel(client.getNovels(params), isGzip);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return Utils.response2Json4Novel(client.getNovels(params), isGzip);
     }
 
     /**
@@ -46,19 +64,13 @@ public class Narou extends GetParameter4Narou {
      * @param ncode String
      * @return Novel {@link Novel}
      */
-    public Novel getNovel(String ncode) {
+    public Novel getNovel(String ncode) throws IOException {
         client = new NarouApiClient();
         params.put("ncode", ncode);
         setAllParams();
 
-        List<Novel> novels = null;
-        try {
-            novels = Utils.response2Json4Novel(client.getNovels(params), isGzip);
-            return novels.get(novels.size() -1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        List<Novel> novels = Utils.response2Json4Novel(client.getNovels(params), isGzip);
+        return novels.get(novels.size() -1);
     }
 
     /**
@@ -67,18 +79,13 @@ public class Narou extends GetParameter4Narou {
      * @param ncode String 小説コード
      * @return NovelBody list {@link NovelBody}
      */
-    public List<NovelBody> getNovelTable(String ncode) {
+    public List<NovelBody> getNovelTable(String ncode) throws IOException {
         client = new NarouApiClient();
         setAllParams();
 
         Response response = client.getNovelTable(ncode);
 
-        String html = "";
-        try {
-            html = response.body().string();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String html = response.body().string();
 
         if (html.equals("")) {
             return null;
@@ -119,7 +126,7 @@ public class Narou extends GetParameter4Narou {
      * @param page int ページ数
      * @return {@link NovelBody} 本文
      */
-    public NovelBody getNovelBody(String ncode, int page) {
+    public NovelBody getNovelBody(String ncode, int page) throws IOException {
         if (page == 0) {
             return null;
         }
@@ -129,12 +136,7 @@ public class Narou extends GetParameter4Narou {
 
         Response response = client.getNovelBody(ncode, page);
 
-        String html = "";
-        try {
-            html = response.body().string();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String html = response.body().string();
 
         if (html.equals("")) {
             return null;
@@ -144,17 +146,16 @@ public class Narou extends GetParameter4Narou {
         result.setNcode(ncode);
         result.setPage(page);
 
-//        System.out.println("ncode: " + ncode + " page: " + String.valueOf(page));
-//        System.out.println(html);
         Document document = Jsoup.parse(html);
 
+        // subtitle取得
         String title = document.select(".novel_subtitle").first().ownText();
         result.setTitle(title);
 
+        // 本文取得
         Element element = document.getElementById("novel_honbun");
 
-//        System.out.println(element.select("ruby").outerHtml());
-
+        // 整形
         String body = element.html();
         String kaigyo = System.getProperty("line.separator");
         body = body.replaceAll(kaigyo, "");
@@ -177,7 +178,7 @@ public class Narou extends GetParameter4Narou {
      *
      * @return Novel list {@link Novel}
      */
-    public List<Novel> getNovelsAll() {
+    public List<Novel> getNovelsAll() throws IOException {
         List<Novel> novels = getNovels();
         novels.remove(0);
         for (Novel novel : novels) {
@@ -193,7 +194,7 @@ public class Narou extends GetParameter4Narou {
      * @param ncode String 小説コード
      * @return Novel list {@link Novel}
      */
-    public Novel getNovelAll(String ncode) {
+    public Novel getNovelAll(String ncode) throws IOException {
         Novel novel = getNovel(ncode);
         ArrayList<NovelBody> list = new ArrayList<>(getNovelTable(ncode));
         for (NovelBody body : list) {
@@ -212,7 +213,7 @@ public class Narou extends GetParameter4Narou {
      * @param ncode String 小説コード
      * @return NovelBody list {@link NovelBody}
      */
-    public List<NovelBody> getNovelBodyAll(String ncode) {
+    public List<NovelBody> getNovelBodyAll(String ncode) throws IOException {
         ArrayList<NovelBody> list = new ArrayList<>(getNovelTable(ncode));
         for (NovelBody body : list) {
             if (!body.isChapter()) {
