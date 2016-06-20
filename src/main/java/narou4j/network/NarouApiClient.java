@@ -16,7 +16,7 @@ public class NarouApiClient {
      * @param params 指定するパラメータのHashMap
      * @return HTTP通信のレスポンス {@link Response}
      */
-    public Response getNovels(Map<String, String> params) {
+    public Response getNovels(Map<String, String> params) throws IOException {
         HttpUrl.Builder builder = NarouUrlBuilder.buildApiUrl();
         for (String key : params.keySet()) {
             builder.addQueryParameter(key, params.get(key));
@@ -31,7 +31,7 @@ public class NarouApiClient {
      * @param params 指定するパラメータのHashMap
      * @return HTTP通信のレスポンス {@link Response}
      */
-    public Response getRanking(Map<String, String> params) {
+    public Response getRanking(Map<String, String> params) throws IOException {
         HttpUrl.Builder builder = NarouUrlBuilder.buildRankingUrl();
         for (String key : params.keySet()) {
             builder.addQueryParameter(key, params.get(key));
@@ -46,7 +46,7 @@ public class NarouApiClient {
      * @param params 指定するパラメータのHashMap
      * @return HTTP通信のレスポンス {@link Response}
      */
-    public Response getRankinDetail(Map<String, String> params) {
+    public Response getRankinDetail(Map<String, String> params) throws IOException {
         HttpUrl.Builder builder = NarouUrlBuilder.buildRankinDetail();
         for (String key : params.keySet()) {
             builder.addQueryParameter(key, params.get(key));
@@ -61,7 +61,7 @@ public class NarouApiClient {
      * @param ncode String 小説コード
      * @return HTTP通信のレスポンス {@link Response}
      */
-    public Response getNovelTable(String ncode) {
+    public Response getNovelTable(String ncode) throws IOException {
         return enqueue(NarouUrlBuilder.buildNovelTableUrl(ncode));
     }
 
@@ -72,21 +72,16 @@ public class NarouApiClient {
      * @param page int ページ番号
      * @return Response HTTP通信のレスポンス {@link Response}
      */
-    public Response getNovelBody(String ncode, int page) {
+    public Response getNovelBody(String ncode, int page) throws IOException {
         return enqueue(NarouUrlBuilder.buildNovelTableUrl(ncode).addPathSegment(String.valueOf(page)));
     }
 
-    private Response enqueue(HttpUrl.Builder builder) {
+    private Response enqueue(HttpUrl.Builder builder) throws IOException {
         Request request = new Request.Builder()
                 .url(builder.build())
                 .get().build();
 
         Call call = client.newCall(request);
-        try {
-            return call.execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return call.execute();
     }
 }

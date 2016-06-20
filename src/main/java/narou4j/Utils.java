@@ -21,14 +21,7 @@ class Utils {
         ObjectMapper mapper = new ObjectMapper();
         String str = getBodyString(response, isGzip);
 
-        List<Novel> novels = null;
-        try {
-            novels = mapper.readValue(str, new TypeReference<List<Novel>>() {
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        List<Novel> novels = mapper.readValue(str, new TypeReference<List<Novel>>() {});
         return novels;
     }
 
@@ -36,13 +29,7 @@ class Utils {
         ObjectMapper mapper = new ObjectMapper();
         String str =  getBodyString(response, isGzip);
 
-        List<NovelRank> rankings = null;
-        try {
-            rankings = mapper.readValue(str, new TypeReference<List<NovelRank>>() { });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        List<NovelRank> rankings = mapper.readValue(str, new TypeReference<List<NovelRank>>() { });
         return rankings;
     }
 
